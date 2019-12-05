@@ -1,8 +1,10 @@
-## Smartlyjobs
+## Laraplate
 
-Smartlyjobs API is a new management application
+!!!WIP!!!
 
-This version is built on Laravel 5.7!
+Laraplate is Laravel API boilerplate
+
+This version is built on Laravel 6.0!
 
 It is built with packages:
 
@@ -10,25 +12,22 @@ It is built with packages:
 * Laravel-CORS [barryvdh/laravel-cors](http://github.com/barryvdh/laravel-cors)
 * Laravel Swagger [jlapp/swaggervel](https://github.com/slampenny/Swaggervel)
 * Laravel Permissions [spatie/laravel-permission](https://github.com/spatie/laravel-permission)
+* L5-repository [andersao/l5-repository](https://github.com/andersao/l5-repository)
 
 ## Installation
 
-1. run `git clone git@bitbucket.org:smartlyjobs/smartlyjobs-backend.git`;
+1. run `git clone https://github.com/MrEldin/laraplate.git .`;
 2. run `cp .env.example .env`;
 3. change settings in .env file;
 4. run `composer install`;
-4. run `php artisan key:generate`;
-5. run `docker-compose up`
+5. run `php artisan key:generate`;
+6. run `cp -a /Docker/. /`
+7. run `docker-compose up`
+8. run `docker-compose exec php bash`
 
 Once the project creation procedure will be completed, 
-run the `docker-compose exec php php artisan migrate --seed` command 
+run the `php artisan migrate --seed` command 
 to install the required tables.
-
-### Deployment guidelines ###
-
-* Dev branch: `develpment` is deployed to: http://tempest-dev.eu-west-2.elasticbeanstalk.com/
-    
-* Prod branch: `master` is deployed to: !missing production url!
     
 ### Contribution guidelines ###
 
@@ -39,7 +38,3 @@ to install the required tables.
     * please create pull requests for every new feature
 
 * Other guidelines
-* For changelog we use https://github.com/rafinskipg/git-changelog
-    * command is: `git-changelog -t false -a "Tempest APP API"`
-    * Commit messages format: [conventional changelog](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular)
-	
