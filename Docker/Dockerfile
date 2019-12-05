@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:7.3-fpm
 
 # Install "curl", "libmemcached-dev", "libpq-dev", "libjpeg-dev",
 #         "libpng12-dev", "libfreetype6-dev", "libssl-dev", "libmcrypt-dev",
@@ -15,6 +15,8 @@ RUN apt-get update \
     libmcrypt-dev \
     git \
     unzip \
+    zip \
+  && pecl install mcrypt-1.0.2 \
   && apt-get install -y build-essential xorg libssl-dev libxrender-dev wget gdebi tar \
   && wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
   && tar vxf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
@@ -22,7 +24,8 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 # Install the PHP mcrypt extention
-RUN docker-php-ext-install mcrypt \
+RUN docker-php-ext-enable mcrypt \
+  && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
   # Install the PHP pdo_mysql extention
   && docker-php-ext-install pdo_mysql \
   # Install the PHP pdo_pgsql extention
