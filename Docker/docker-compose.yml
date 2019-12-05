@@ -1,0 +1,93 @@
+version: "2"
+services:
+
+### MySQL Container #########################################
+
+  mysql:
+   image: mysql:5.7
+   ports:
+     - "3306:3306"
+   volumes:
+     - ./database/data:/var/lib/mysql:cached
+   environment:
+     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+     - MYSQL_DATABASE=homestead
+     - MYSQL_USER=homestead
+     - MYSQL_PASSWORD=secret
+
+### MySQL Testing Container #########################################
+
+  mysql-test:
+   image: mysql:5.7
+   ports:
+     - "3303:3306"
+   environment:
+     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+     - MYSQL_DATABASE=homestead
+     - MYSQL_USER=homestead
+     - MYSQL_PASSWORD=secret
+
+### Redis Container #########################################
+
+#  redis:
+#   image: redis
+#   ports:
+#    - "6379:6379"
+#   volumes:
+#    - ./database/cache:/data:cached
+
+### MongoDB Container #######################################
+#
+#  mongo:
+#    image: mongo
+#    ports:
+#     - "27017:27017"
+#    volumes:
+#     - ./database/mongo:/data/db
+
+### NGINX Server Container ##################################
+
+  tempest.local:
+   image: nginx
+   volumes:
+    - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    - .:/var/www/html:cached
+   ports:
+    - "80:80"
+   environment:
+    - NGINX_HOST=tempest.local
+    - NGINX_PORT=80
+   links:
+    - php
+   command: /bin/bash -c "envsubst <  /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+
+### PHP-FPM Container #######################################
+
+  php:
+   build: .
+   ports:
+     - "9000:9000"
+   volumes:
+     - .:/var/www/html:cached
+     - ~/.ssh:/root/.ssh
+     - ~/.composer/auth.json:/root/.composer/auth.json
+     - ./custom.ini:/usr/local/etc/php/conf.d/custom.ini
+   links:
+#     - mongo
+     - mysql
+     - mysql-test
+
+### PHP-FPM xdebug Container #######################################
+
+#  php.xdebug:
+#   build:
+#     context: .
+#     dockerfile: Dockerfile-xdebug
+#   ports:
+#     - "9013:9000"
+#   volumes:
+#     - .:/var/www/html:cached
+#     - ~/.ssh:/root/.ssh
+#     - ~/.composer/auth.json:/root/.composer/auth.json
+#     - ./custom.ini:/usr/local/etc/php/conf.d/custom.ini
+#     - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
