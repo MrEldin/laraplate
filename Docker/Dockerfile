@@ -10,9 +10,12 @@ RUN apt-get update \
     libpq-dev \
     libjpeg-dev \
     libpng-dev \
-    libfreetype6-dev \
     libssl-dev \
     libmcrypt-dev \
+    libwebp-dev \
+    libjpeg62-turbo-dev \
+    libxpm-dev \
+    libfreetype6-dev \
     git \
     unzip \
     zip \
@@ -32,10 +35,14 @@ RUN docker-php-ext-enable mcrypt \
   && docker-php-ext-install pdo_pgsql \
   # Install the PHP gd library
   && docker-php-ext-configure gd \
-    --enable-gd-native-ttf \
-    --with-jpeg-dir=/usr/lib \
-    --with-freetype-dir=/usr/include/freetype2 && \
-    docker-php-ext-install gd
+    --with-gd \
+    --with-webp-dir \
+    --with-jpeg-dir \
+    --with-png-dir \
+    --with-zlib-dir \
+    --with-xpm-dir \
+    --with-freetype-dir \
+  && docker-php-ext-install gd
 
 
 #RUN pecl install xdebug-2.5.0 \

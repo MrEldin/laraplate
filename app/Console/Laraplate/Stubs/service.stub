@@ -1,0 +1,29 @@
+<?php
+
+$NAMESPACE$
+
+
+use Illuminate\Support\Arr;
+use $REPOSITORY_NAMESPACE$;
+
+class $SUB_CLASS$$CLASS$Service
+{
+    /**
+     * @var $CLASS$Repository
+     */
+    private $$SMALL_CLASS$Repository;
+
+    /**
+     * CreateCostService constructor.
+     * @param $CLASS$Repository $$SMALL_CLASS$Repository
+     */
+    public function __construct($CLASS$Repository $$SMALL_CLASS$Repository)
+    {
+        $this->$SMALL_CLASS$Repository = $$SMALL_CLASS$Repository;
+    }
+
+    public function handle($SUB_DATA$array $data)
+    {
+        return $this->$SMALL_CLASS$Repository->$METHOD$($SUB_DATA$Arr::only($data, $FILLABLE_DATA$));
+    }
+}

@@ -1,0 +1,69 @@
+<?php
+
+$NAMESPACE$
+
+use Illuminate\Http\Response;
+use $MODEL$;
+use Tests\TestCase;
+
+class $CLASS$$SUB_CLASS$Test extends TestCase
+{
+    public function setUp(): void
+    {
+        parent::setUp();
+    }
+
+    /** @test
+     * @dataProvider get$CLASS$$SUB_CLASS$Data
+     *
+     * @param $data
+     * @param $message
+     */
+    public function it_should_not_$SMALL_SUB_CLASS$_$SMALL_CLASS$($data, $message)
+    {
+        //ARRANGE
+        $$SMALL_CLASS$Data = factory($CLASS$::class)->make()->toArray();
+
+        $newData = $data + $$SMALL_CLASS$Data;
+
+        //ACT
+        $response = $this->$METHOD$(
+            url('$URL$'),
+            $newData,
+            $this->getRequestHeaders()
+        );
+
+        //ASSERT
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+        $this->assertEquals($message['errors'], $response->getOriginalContent()['errors']);
+    }
+
+
+
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public function get$CLASS$$SUB_CLASS$Data()
+    {
+        // Please change dummy data
+
+        return [
+            'Some item is required' => [
+                //Testable data
+                [
+                    'item' => null,
+                ],
+                //Expected validation message
+                [
+                    'errors' => [
+                        'columns' => [
+                            'The item field is required.',
+                        ],
+                    ],
+                ],
+            ]
+        ];
+    }
+}

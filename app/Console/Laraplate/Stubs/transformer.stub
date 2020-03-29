@@ -1,0 +1,40 @@
+<?php
+
+$NAMESPACE$
+
+use League\Fractal\TransformerAbstract;
+use $MODEL$;
+
+/**
+ * @SWG\Definition (
+ *      definition="$CLASS$TransformerV1",
+ *      required={},
+ *      @SWG\Property(
+ *          property="id",
+ *          description="id",
+ *          type="integer"
+ *      )
+ * )
+ *
+ * Class $CLASS$Transformer
+ *
+ * @package Tempest\Api\V1\Transformers
+ */
+class $CLASS$Transformer extends TransformerAbstract
+{
+
+    protected $availableIncludes = [];
+
+    /**
+     * Transform user data
+     *
+     * @param $CLASS$ $$CLASS_SMALL$
+     * @return array
+     */
+    public function transform($CLASS$ $$CLASS_SMALL$)
+    {
+        return [
+            'id'    => (int)$$CLASS_SMALL$->{$CLASS$::ID},
+        ];
+    }
+}

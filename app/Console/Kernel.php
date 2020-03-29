@@ -2,6 +2,15 @@
 
 namespace App\Console;
 
+use App\Console\Nar\Commands\MakeLaraplateContract;
+use App\Console\Nar\Commands\MakeLaraplateController;
+use App\Console\Nar\Commands\MakeLaraplateEntity;
+use App\Console\Nar\Commands\MakeLaraplateModel;
+use App\Console\Nar\Commands\MakeLaraplateRepository;
+use App\Console\Nar\Commands\MakeLaraplateRequest;
+use App\Console\Nar\Commands\MakeLaraplateRoutes;
+use App\Console\Nar\Commands\MakeLaraplateServiceProvider;
+use App\Console\Nar\Commands\MakeLaraplateTransformer;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +22,15 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        MakeLaraplateEntity::class,
+        MakeLaraplateModel::class,
+        MakeLaraplateContract::class,
+        MakeLaraplateRepository::class,
+        MakeLaraplateServiceProvider::class,
+        MakeLaraplateController::class,
+        MakeLaraplateTransformer::class,
+        MakeLaraplateRequest::class,
+        MakeLaraplateRoutes::class,
     ];
 
     /**

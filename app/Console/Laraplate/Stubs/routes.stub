@@ -1,0 +1,40 @@
+<?php
+
+$NAMESPACE$
+
+use $CONTROLLER_NAMESPACE$;
+
+$api = app('Dingo\Api\Routing\Router');
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+| You will register you routes as $SMALL_CLASS$ routes, and prefix will be
+| /$SMALL_CLASS$s/ so you can use this routes file as you main route file for
+| your $CLASS$ feature.
+|
+| Do not forget to register this routes file in your RouteServiceProvider.
+| This route file are using Dingo API for versioning api so for more info please
+| take a look here: https://github.com/dingo/api/wiki
+|
+*/
+
+$api->version('v1', function ($api) {
+    $api->group([
+        'middleware' => ['api'],
+        'prefix'     => '$SMALL_CLASS$',
+        'as'         => '$SMALL_CLASS$'
+    ], function ($api) {
+        $api->get('', $CLASS$Controller::class . '@index')->name('index');
+        $api->get('{id}', $CLASS$Controller::class . '@show')->name('show');
+        $api->post('', $CLASS$Controller::class . '@create')->name('create');
+        $api->put('{id}', $CLASS$Controller::class . '@update')->name('update');
+        $api->delete('{id}', $CLASS$Controller::class . '@destroy')->name('destroy');
+    });
+});

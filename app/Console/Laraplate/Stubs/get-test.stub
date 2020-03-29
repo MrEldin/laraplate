@@ -1,0 +1,32 @@
+<?php
+
+$NAMESPACE$
+
+use Illuminate\Http\Response;
+use $MODEL$;
+use Tests\TestCase;
+
+class $CLASS$$SUB_CLASS$Test extends TestCase
+{
+    public function setUp(): void
+    {
+        parent::setUp();
+    }
+
+    /** @test */
+    public function it_should_$SMALL_SUB_CLASS$_$SMALL_CLASS$()
+    {
+        //ARRANGE
+        $$SMALL_CLASS$Data = factory($CLASS$::class)->make()->toArray();
+
+        //ACT
+        $response = $this->$METHOD$(
+            url('$URL$'),
+            $this->getRequestHeaders()
+        );
+
+        //ASSERT
+        $response->assertStatus(Response::HTTP_OK);
+        $this->assertDatabaseHas($CLASS$::TABLE, $$SMALL_CLASS$Data);
+    }
+}

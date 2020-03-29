@@ -1,0 +1,412 @@
+<?php
+
+$NAMESPACE$
+
+use Illuminate\Http\Response;
+use $TRANSFORMER$;
+use $REPOSITORY$;
+use $CREATE_REQUEST$;
+use $UPDATE_REQUEST$;
+use $GET_REQUEST$;
+use $DELETE_REQUEST$;
+use $CREATE_SERVICE_NAMESPACE$;
+use $UPDATE_SERVICE_NAMESPACE$;
+use $GET_SERVICE_NAMESPACE$;
+use $INDEX_SERVICE_NAMESPACE$;
+use $DELETE_SERVICE_NAMESPACE$;
+
+class $CLASS$Controller extends Controller
+{
+
+    /**
+     * @SWG\Get(
+     *      path="/api/$CLASS_SMALL$s/{id}",
+     *      summary="Get one $CLASS_SMALL$ by id",
+     *      tags={"$CLASS_SMALL$s"},
+     *      description="Get one $CLASS_SMALL$ by id
+    <br> **permission:** _view-$CLASS_SMALL$s_",
+     *      produces={"application/json"},
+     *      security={
+     *         {
+     *             "jwt": {"agency-admin"}
+     *         }
+     *      },
+     *      @SWG\Response(
+     *          response=200,
+     *          description="200 OK",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @SWG\Items(ref="#/definitions/$CLASS$TransformerV1")
+     *              )
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=204,
+     *          description="204 No Content",
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="400 Bad Request",
+     *          @SWG\Schema(ref="#/definitions/BadRequestErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="401 Unauthorized",
+     *          @SWG\Schema(ref="#/definitions/UnauthorizedErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=403,
+     *          description="403 Forbidden",
+     *          @SWG\Schema(ref="#/definitions/ForbiddenErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="404 Not Found",
+     *          @SWG\Schema(ref="#/definitions/NotFoundErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=405,
+     *          description="405 Method Not Allowed",
+     *          @SWG\Schema(ref="#/definitions/NotAllowedErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=422,
+     *          description="422 Unprocessable Entity",
+     *          @SWG\Schema(ref="#/definitions/ValidationErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=500,
+     *          description="500 Internal Server Error",
+     *      )
+     * )
+     *
+     * Return $CLASS_SMALL$
+     * @param $id
+     * @param Get$CLASS$Service $service
+     * @param Get$CLASS$Request $request
+     * @return \Dingo\Api\Http\Response
+     */
+    public function show(Get$CLASS$Request $request, $id, Get$CLASS$Service $service)
+    {
+        return $this->response
+            ->item($service->handle($id), new $CLASS$Transformer())
+            ->setStatusCode(Response::HTTP_OK);
+    }
+
+    /**
+     * @SWG\Get(
+     *      path="/api/$CLASS_SMALL$s",
+     *      summary="Get all $CLASS_SMALL$s",
+     *      tags={"$CLASS_SMALL$s"},
+     *      description="Return all $CLASS_SMALL$s
+    <br> **permission:** _view-$CLASS_SMALL$s_",
+     *      produces={"application/json"},
+     *      security={
+     *         {
+     *             "jwt": {"agency-admin"}
+     *         }
+     *      },
+     *      @SWG\Response(
+     *          response=200,
+     *          description="200 OK",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @SWG\Items(ref="#/definitions/$CLASS$TransformerV1")
+     *              )
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=204,
+     *          description="204 No Content",
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="400 Bad Request",
+     *          @SWG\Schema(ref="#/definitions/BadRequestErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="401 Unauthorized",
+     *          @SWG\Schema(ref="#/definitions/UnauthorizedErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=403,
+     *          description="403 Forbidden",
+     *          @SWG\Schema(ref="#/definitions/ForbiddenErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="404 Not Found",
+     *          @SWG\Schema(ref="#/definitions/NotFoundErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=405,
+     *          description="405 Method Not Allowed",
+     *          @SWG\Schema(ref="#/definitions/NotAllowedErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=422,
+     *          description="422 Unprocessable Entity",
+     *          @SWG\Schema(ref="#/definitions/ValidationErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=500,
+     *          description="500 Internal Server Error",
+     *      )
+     * )
+     *
+     * Return all $CLASS_SMALL$s
+     * @param Index$CLASS$Service $service
+     * @param Get$CLASS$Request $request
+     * @return \Dingo\Api\Http\Response
+     */
+    public function index(Get$CLASS$Request $request, Index$CLASS$Service $service)
+    {
+        return $this->response
+            ->collection($service->handle(), new $CLASS$Transformer())
+            ->setStatusCode(Response::HTTP_OK);
+    }
+
+    /**
+     * @SWG\Post(
+     *      path="/api/$CLASS_SMALL$s",
+     *      summary="Create $CLASS_SMALL$",
+     *      tags={"$CLASS_SMALL$s"},
+     *      description="Create $CLASS_SMALL$",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="auth",
+     *          in="body",
+     *          description="$CLASS$ that should be authorization",
+     *          required=false,
+     *          @SWG\Schema(ref="#/definitions/Create$CLASS$RequestV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="200 OK",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="token",
+     *                  type="string"
+     *              )
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=204,
+     *          description="204 No Content",
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="400 Bad Request",
+     *          @SWG\Schema(ref="#/definitions/BadRequestErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="401 Unauthorized",
+     *          @SWG\Schema(ref="#/definitions/UnauthorizedErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=403,
+     *          description="403 Forbidden",
+     *          @SWG\Schema(ref="#/definitions/ForbiddenErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="404 Not Found",
+     *          @SWG\Schema(ref="#/definitions/NotFoundErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=405,
+     *          description="405 Method Not Allowed",
+     *          @SWG\Schema(ref="#/definitions/NotAllowedErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=422,
+     *          description="422 Unprocessable Entity",
+     *          @SWG\Schema(ref="#/definitions/ValidationErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=500,
+     *          description="500 Internal Server Error",
+     *      )
+     * )
+     *
+     * Get a JWT via given credentials.
+     *
+     * @param Create$CLASS$Service $service
+     * @param Create$CLASS$Request $request
+     * @return \Dingo\Api\Http\Response
+     */
+    public function create(Create$CLASS$Request $request, Create$CLASS$Service $service)
+    {
+        return $this->response
+            ->item($service->handle($request->all()), new $CLASS$Transformer())
+            ->setStatusCode(Response::HTTP_OK);
+    }
+
+
+    /**
+     * @SWG\Put(
+     *      path="/api/$CLASS_SMALL$s",
+     *      summary="Update $CLASS_SMALL$",
+     *      tags={"$CLASS_SMALL$s"},
+     *      description="Update $CLASS_SMALL$",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="auth",
+     *          in="body",
+     *          description="$CLASS$ that should be authorization",
+     *          required=false,
+     *          @SWG\Schema(ref="#/definitions/Update$CLASS$RequestV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="200 OK",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="token",
+     *                  type="string"
+     *              )
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=204,
+     *          description="204 No Content",
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="400 Bad Request",
+     *          @SWG\Schema(ref="#/definitions/BadRequestErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="401 Unauthorized",
+     *          @SWG\Schema(ref="#/definitions/UnauthorizedErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=403,
+     *          description="403 Forbidden",
+     *          @SWG\Schema(ref="#/definitions/ForbiddenErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="404 Not Found",
+     *          @SWG\Schema(ref="#/definitions/NotFoundErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=405,
+     *          description="405 Method Not Allowed",
+     *          @SWG\Schema(ref="#/definitions/NotAllowedErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=422,
+     *          description="422 Unprocessable Entity",
+     *          @SWG\Schema(ref="#/definitions/ValidationErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=500,
+     *          description="500 Internal Server Error",
+     *      )
+     * )
+     *
+     * Get a JWT via given credentials.
+     *
+     * @param Update$CLASS$Request $request
+     * @param $id
+     * @param Update$CLASS$Service $service
+     * @return \Dingo\Api\Http\Response
+     */
+    public function update(Update$CLASS$Request $request, $id, Update$CLASS$Service $service)
+    {
+        return $this->response
+            ->item($service->handle($id, $request->all()), new $CLASS$Transformer())
+            ->setStatusCode(Response::HTTP_OK);
+    }
+
+
+    /**
+     * @SWG\Delete(
+     *      path="/api/$CLASS_SMALL$s",
+     *      summary="Delete $CLASS_SMALL$",
+     *      tags={"$CLASS_SMALL$s"},
+     *      description="Delete $CLASS_SMALL$",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="auth",
+     *          in="body",
+     *          description="$CLASS$ that should be authorization",
+     *          required=false,
+     *          @SWG\Schema(ref="#/definitions/Delete$CLASS$RequestV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="200 OK",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="token",
+     *                  type="string"
+     *              )
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=204,
+     *          description="204 No Content",
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="400 Bad Request",
+     *          @SWG\Schema(ref="#/definitions/BadRequestErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="401 Unauthorized",
+     *          @SWG\Schema(ref="#/definitions/UnauthorizedErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=403,
+     *          description="403 Forbidden",
+     *          @SWG\Schema(ref="#/definitions/ForbiddenErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="404 Not Found",
+     *          @SWG\Schema(ref="#/definitions/NotFoundErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=405,
+     *          description="405 Method Not Allowed",
+     *          @SWG\Schema(ref="#/definitions/NotAllowedErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=422,
+     *          description="422 Unprocessable Entity",
+     *          @SWG\Schema(ref="#/definitions/ValidationErrorResponseV1")
+     *      ),
+     *      @SWG\Response(
+     *          response=500,
+     *          description="500 Internal Server Error",
+     *      )
+     * )
+     *
+     * Get a JWT via given credentials.
+     *
+     * @param Delete$CLASS$Request $request
+     * @param $id
+     * @param Delete$CLASS$Service $service
+     * @return int
+     */
+    public function destroy(Delete$CLASS$Request $request, $id, Delete$CLASS$Service $service)
+    {
+        return $service->handle($id);
+    }
+
+}
