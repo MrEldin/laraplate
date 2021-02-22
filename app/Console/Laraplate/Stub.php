@@ -1,5 +1,5 @@
 <?php
-namespace App\Console\Commands\Nar;
+namespace App\Console\Laraplate;
 
 /**
  * Class Stub

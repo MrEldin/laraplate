@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Console\Nar\Commands;
+namespace App\Console\Laraplate\Commands;
 
-use App\Console\Nar\Generators\GenerateLaraplateModel;
-use App\Console\Nar\Generators\GenerateLaraplateTransformer;
+use App\Console\Laraplate\Generators\GenerateLaraplateModel;
+use App\Console\Laraplate\Generators\GenerateLaraplateTransformer;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 

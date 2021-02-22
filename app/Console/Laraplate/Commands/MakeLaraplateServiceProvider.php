@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Console\Nar\Commands;
+namespace App\Console\Laraplate\Commands;
 
-use App\Console\Nar\Generators\GenerateLaraplateContract;
-use App\Console\Nar\Generators\GenerateLaraplateModel;
-use App\Console\Nar\Generators\GenerateLaraplateRepository;
-use App\Console\Nar\Generators\GenerateLaraplateServiceProvider;
+use App\Console\Laraplate\Generators\GenerateLaraplateContract;
+use App\Console\Laraplate\Generators\GenerateLaraplateModel;
+use App\Console\Laraplate\Generators\GenerateLaraplateRepository;
+use App\Console\Laraplate\Generators\GenerateLaraplateServiceProvider;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 

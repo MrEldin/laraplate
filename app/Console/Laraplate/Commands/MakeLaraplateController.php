@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Console\Nar\Commands;
+namespace App\Console\Laraplate\Commands;
 
-use App\Console\Nar\Generators\GenerateLaraplateController;
-use App\Console\Nar\Generators\GenerateLaraplateModel;
-use App\Console\Nar\Generators\GenerateLaraplateService;
-use App\Console\Nar\Generators\GenerateLaraplateTestFile;
+use App\Console\Laraplate\Generators\GenerateLaraplateController;
+use App\Console\Laraplate\Generators\GenerateLaraplateModel;
+use App\Console\Laraplate\Generators\GenerateLaraplateService;
+use App\Console\Laraplate\Generators\GenerateLaraplateTestFile;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -131,7 +131,7 @@ class MakeLaraplateController extends Command
 
     /**
      * @param string $model
-     * @throws \App\Console\Nar\Exceptions\FileAlreadyExistsException
+     * @throws \App\Console\Laraplate\Exceptions\FileAlreadyExistsException
      */
     private function generateTests(string $model): void
     {

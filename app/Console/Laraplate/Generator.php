@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Console\Commands\Nar;
+namespace App\Console\Laraplate;
 
-use App\Console\Nar\Exceptions\FileAlreadyExistsException;
+use App\Console\Laraplate\Exceptions\FileAlreadyExistsException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 

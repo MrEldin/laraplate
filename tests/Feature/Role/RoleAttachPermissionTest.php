@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Functional\Role;
+namespace Tests\Feature\Role;
 
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;

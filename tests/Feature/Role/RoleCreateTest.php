@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Functional\Role;
+namespace Tests\Feature\Role;
 
 use SmartlyJobs\Entities\Role\Models\Role;
 use Tests\TestCase;

@@ -2,15 +2,15 @@
 
 namespace App\Console;
 
-use App\Console\Nar\Commands\MakeLaraplateContract;
-use App\Console\Nar\Commands\MakeLaraplateController;
-use App\Console\Nar\Commands\MakeLaraplateEntity;
-use App\Console\Nar\Commands\MakeLaraplateModel;
-use App\Console\Nar\Commands\MakeLaraplateRepository;
-use App\Console\Nar\Commands\MakeLaraplateRequest;
-use App\Console\Nar\Commands\MakeLaraplateRoutes;
-use App\Console\Nar\Commands\MakeLaraplateServiceProvider;
-use App\Console\Nar\Commands\MakeLaraplateTransformer;
+use App\Console\Laraplate\Commands\MakeLaraplateContract;
+use App\Console\Laraplate\Commands\MakeLaraplateController;
+use App\Console\Laraplate\Commands\MakeLaraplateEntity;
+use App\Console\Laraplate\Commands\MakeLaraplateModel;
+use App\Console\Laraplate\Commands\MakeLaraplateRepository;
+use App\Console\Laraplate\Commands\MakeLaraplateRequest;
+use App\Console\Laraplate\Commands\MakeLaraplateRoutes;
+use App\Console\Laraplate\Commands\MakeLaraplateServiceProvider;
+use App\Console\Laraplate\Commands\MakeLaraplateTransformer;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 

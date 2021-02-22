@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Functional\Permission;
+namespace Tests\Feature\Permission;
 
 use SmartlyJobs\Entities\Permission\Models\Permission;
 use Tests\TestCase;

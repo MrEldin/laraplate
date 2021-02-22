@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Functional\User;
+namespace Tests\Feature\User;
 
 use Illuminate\Http\Response;
 use SmartlyJobs\Entities\User\Models\User;

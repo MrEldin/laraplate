@@ -1,5 +1,5 @@
 <?php
-namespace App\Console\Nar\Exceptions;
+namespace App\Console\Laraplate\Exceptions;
 
 use Exception;
 

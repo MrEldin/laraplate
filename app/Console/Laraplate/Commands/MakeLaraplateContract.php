@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Console\Nar\Commands;
+namespace App\Console\Laraplate\Commands;
 
-use App\Console\Nar\Generators\GenerateLaraplateContract;
+use App\Console\Laraplate\Generators\GenerateLaraplateContract;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 

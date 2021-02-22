@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Nar\Generators;
+namespace App\Console\Laraplate\Generators;
 
 use App\Console\Commands\Nar\Generator;
 

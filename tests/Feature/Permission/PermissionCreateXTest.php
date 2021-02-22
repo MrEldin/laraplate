@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Functional\Permission;
+namespace Tests\Feature\Permission;
 
 use Illuminate\Http\Response;
 use SmartlyJobs\Entities\Permission\Models\Permission;
