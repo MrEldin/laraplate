@@ -4,8 +4,6 @@ namespace SmartlyJobs\Entities\User\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use SmartlyJobs\Entities\Organisation\Models\Organisation;
-use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -47,17 +45,6 @@ class User extends Authenticatable implements JWTSubject
         self::PASSWORD,
         self::REMEMBER_TOKEN
     ];
-
-
-    public function organisations()
-    {
-        return $this->belongsToMany(
-            Organisation::class,
-            Organisation::ORGANISATION_USER_RELATED_TABLE,
-            Organisation::ORGANISATION_USER_RELATED_USER_ID,
-            Organisation::ORGANISATION_USER_RELATED_ORGANISATION_ID
-        );
-    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
