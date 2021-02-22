@@ -9,7 +9,7 @@ use SmartlyJobs\Entities\Role\Models\Role;
 
 /**
  * @SWG\Definition (
- *      definition="RoleCreateRequestV1",
+ *      definition="RoleUpdateRequestV1",
  *      required={"name", "label", "email"},
  *      @SWG\Property(
  *          property="name",

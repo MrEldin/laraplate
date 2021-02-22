@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Permission;
 
 /**
  * @SWG\Definition (
- *      definition="PermissionTransformerV1",
+ *      definition="PermissionIdTransformerV1",
  *      required={},
  *      @SWG\Property(
  *          property="id",

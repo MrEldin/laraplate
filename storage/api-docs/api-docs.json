@@ -221,13 +221,13 @@
                 }
             }
         },
-        "/api/organisations/{id}": {
+        "/api/permissions/{id}": {
             "get": {
                 "tags": [
-                    "organisations"
+                    "permissions"
                 ],
-                "summary": "Get one organisation by id",
-                "description": "Get one organisation by id\n    <br> **permission:** _view-organisation_",
+                "summary": "Get one permission by id",
+                "description": "Get one permission by id\r\n    <br> **permission:** _view-permission_",
                 "produces": [
                     "application/json"
                 ],
@@ -239,7 +239,7 @@
                                 "data": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/OrganisationTransformerV1"
+                                        "$ref": "#/definitions/PermissionTransformerV1"
                                     }
                                 }
                             },
@@ -262,13 +262,13 @@
                 ]
             }
         },
-        "/api/organisations": {
+        "/api/permissions": {
             "get": {
                 "tags": [
-                    "organisations"
+                    "permissions"
                 ],
-                "summary": "Get all organisations",
-                "description": "Return all organisations\n    <br> **permission:** _view-organisation_",
+                "summary": "Get all permissions",
+                "description": "Return all permissions\r\n    <br> **permission:** _view-permission_",
                 "produces": [
                     "application/json"
                 ],
@@ -280,7 +280,7 @@
                                 "data": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/OrganisationTransformerV1"
+                                        "$ref": "#/definitions/PermissionTransformerV1"
                                     }
                                 }
                             },
@@ -304,10 +304,10 @@
             },
             "put": {
                 "tags": [
-                    "organisations"
+                    "permissions"
                 ],
-                "summary": "Update organisation",
-                "description": "Update organisation",
+                "summary": "Update permission",
+                "description": "Update permission",
                 "produces": [
                     "application/json"
                 ],
@@ -364,10 +364,10 @@
             },
             "post": {
                 "tags": [
-                    "organisations"
+                    "permissions"
                 ],
-                "summary": "Create organisation",
-                "description": "Create organisation",
+                "summary": "Create permission",
+                "description": "Create permission",
                 "produces": [
                     "application/json"
                 ],
@@ -378,7 +378,7 @@
                         "description": "User that should be authorization",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/OrganisationCreateRequestV1"
+                            "$ref": "#/definitions/PermissionCreateRequestV1"
                         }
                     }
                 ],
@@ -423,13 +423,13 @@
                 }
             }
         },
-        "/api/organisations/phases": {
+        "/api/roles/{id}": {
             "get": {
                 "tags": [
-                    "organisation-phase"
+                    "roles"
                 ],
-                "summary": "Get all organisation phases",
-                "description": "Return all organisation phases\n    <br> **permission:** _view-organisation_",
+                "summary": "Get one role by id",
+                "description": "Get one role by id\n    <br> **permission:** _view-role_",
                 "produces": [
                     "application/json"
                 ],
@@ -441,234 +441,7 @@
                                 "data": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/PhaseTransformerV1"
-                                    }
-                                }
-                            },
-                            "type": "object"
-                        }
-                    },
-                    "400": {
-                        "description": "400 Bad Request"
-                    },
-                    "500": {
-                        "description": "500 Internal Server Error"
-                    }
-                },
-                "security": [
-                    {
-                        "jwt": [
-                            "agency-admin"
-                        ]
-                    }
-                ]
-            }
-        },
-        "/api/organisations/phases/{id}": {
-            "put": {
-                "tags": [
-                    "organisation-phase"
-                ],
-                "summary": "Update organisation",
-                "description": "Update organisation phases",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "auth",
-                        "in": "body",
-                        "description": "User that should be authorization",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/OrganisationPhaseAttachRequestV1"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 OK",
-                        "schema": {
-                            "properties": {
-                                "token": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    },
-                    "210": {
-                        "description": "210 Two way authorization requested",
-                        "schema": {
-                            "properties": {
-                                "hash": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    },
-                    "401": {
-                        "description": "401 Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/UnauthorizedErrorResponseV1"
-                        }
-                    },
-                    "422": {
-                        "description": "422 Unprocessable Entity",
-                        "schema": {
-                            "$ref": "#/definitions/ValidationErrorResponseV1"
-                        }
-                    },
-                    "500": {
-                        "description": "500 Server Error"
-                    }
-                }
-            }
-        },
-        "/api/organisations/phases/detach/{id}": {
-            "put": {
-                "tags": [
-                    "organisation-phase"
-                ],
-                "summary": "Update organisation",
-                "description": "Update organisation phases",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "auth",
-                        "in": "body",
-                        "description": "User that should be authorization",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/OrganisationPhaseAttachRequestV1"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 OK",
-                        "schema": {
-                            "properties": {
-                                "token": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    },
-                    "210": {
-                        "description": "210 Two way authorization requested",
-                        "schema": {
-                            "properties": {
-                                "hash": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    },
-                    "401": {
-                        "description": "401 Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/UnauthorizedErrorResponseV1"
-                        }
-                    },
-                    "422": {
-                        "description": "422 Unprocessable Entity",
-                        "schema": {
-                            "$ref": "#/definitions/ValidationErrorResponseV1"
-                        }
-                    },
-                    "500": {
-                        "description": "500 Server Error"
-                    }
-                }
-            }
-        },
-        "/api/organisations/phases/sync/{id}": {
-            "put": {
-                "tags": [
-                    "organisation-phase"
-                ],
-                "summary": "Update organisation",
-                "description": "Update organisation phases",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "auth",
-                        "in": "body",
-                        "description": "User that should be authorization",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/OrganisationPhaseSyncRequestV1"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 OK",
-                        "schema": {
-                            "properties": {
-                                "token": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    },
-                    "210": {
-                        "description": "210 Two way authorization requested",
-                        "schema": {
-                            "properties": {
-                                "hash": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    },
-                    "401": {
-                        "description": "401 Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/UnauthorizedErrorResponseV1"
-                        }
-                    },
-                    "422": {
-                        "description": "422 Unprocessable Entity",
-                        "schema": {
-                            "$ref": "#/definitions/ValidationErrorResponseV1"
-                        }
-                    },
-                    "500": {
-                        "description": "500 Server Error"
-                    }
-                }
-            }
-        },
-        "/api/organisations/users/{id}": {
-            "get": {
-                "tags": [
-                    "organisation-user"
-                ],
-                "summary": "Get all organisation users",
-                "description": "Return all organisation users\n    <br> **permission:** _view-organisation_",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 OK",
-                        "schema": {
-                            "properties": {
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/UserTransformerV1"
+                                        "$ref": "#/definitions/RoleTransformerV1"
                                     }
                                 }
                             },
@@ -690,12 +463,12 @@
                     }
                 ]
             },
-            "post": {
+            "delete": {
                 "tags": [
-                    "organisation-user"
+                    "roles"
                 ],
-                "summary": "Create user for organisation",
-                "description": "Create user for organisation",
+                "summary": "Delete role",
+                "description": "Update role",
                 "produces": [
                     "application/json"
                 ],
@@ -706,7 +479,7 @@
                         "description": "User that should be authorization",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/UserCreateRequestV1"
+                            "$ref": "#/definitions/UserLoginRequestV1"
                         }
                     }
                 ],
@@ -715,11 +488,8 @@
                         "description": "200 OK",
                         "schema": {
                             "properties": {
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/UserTransformerV1"
-                                    }
+                                "token": {
+                                    "type": "string"
                                 }
                             },
                             "type": "object"
@@ -754,13 +524,13 @@
                 }
             }
         },
-        "/api/phases/{id}": {
+        "/api/roles": {
             "get": {
                 "tags": [
-                    "phases"
+                    "roles"
                 ],
-                "summary": "Get phase",
-                "description": "Get phase\n    <br> **permission:** _view-phases_",
+                "summary": "Get all roles",
+                "description": "Return all roles\n    <br> **permission:** _view-role_",
                 "produces": [
                     "application/json"
                 ],
@@ -772,48 +542,7 @@
                                 "data": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/PhaseTransformerV1"
-                                    }
-                                }
-                            },
-                            "type": "object"
-                        }
-                    },
-                    "400": {
-                        "description": "400 Bad Request"
-                    },
-                    "500": {
-                        "description": "500 Internal Server Error"
-                    }
-                },
-                "security": [
-                    {
-                        "jwt": [
-                            "agency-admin"
-                        ]
-                    }
-                ]
-            }
-        },
-        "/api/phases": {
-            "get": {
-                "tags": [
-                    "phases"
-                ],
-                "summary": "Get all phases",
-                "description": "Return all phases\n    <br> **permission:** _view-phase_",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 OK",
-                        "schema": {
-                            "properties": {
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/PhaseTransformerV1"
+                                        "$ref": "#/definitions/RoleTransformerV1"
                                     }
                                 }
                             },
@@ -837,10 +566,10 @@
             },
             "put": {
                 "tags": [
-                    "phases"
+                    "roles"
                 ],
-                "summary": "Update phase",
-                "description": "Update phase",
+                "summary": "Update role",
+                "description": "Update role",
                 "produces": [
                     "application/json"
                 ],
@@ -897,10 +626,10 @@
             },
             "post": {
                 "tags": [
-                    "phases"
+                    "roles"
                 ],
-                "summary": "Create phase",
-                "description": "Create phase",
+                "summary": "Create role",
+                "description": "Create role",
                 "produces": [
                     "application/json"
                 ],
@@ -911,7 +640,189 @@
                         "description": "User that should be authorization",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/PhaseCreateRequestV1"
+                            "$ref": "#/definitions/RoleCreateRequestV1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 OK",
+                        "schema": {
+                            "properties": {
+                                "token": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "210": {
+                        "description": "210 Two way authorization requested",
+                        "schema": {
+                            "properties": {
+                                "hash": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UnauthorizedErrorResponseV1"
+                        }
+                    },
+                    "422": {
+                        "description": "422 Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/ValidationErrorResponseV1"
+                        }
+                    },
+                    "500": {
+                        "description": "500 Server Error"
+                    }
+                }
+            }
+        },
+        "/api/roles/{roleId}/permissions/{permissionId}": {
+            "put": {
+                "tags": [
+                    "roles"
+                ],
+                "summary": "Attach permission to role",
+                "description": "Update role",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "auth",
+                        "in": "body",
+                        "description": "User that should be authorization",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/UserLoginRequestV1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 OK",
+                        "schema": {
+                            "properties": {
+                                "token": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "210": {
+                        "description": "210 Two way authorization requested",
+                        "schema": {
+                            "properties": {
+                                "hash": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UnauthorizedErrorResponseV1"
+                        }
+                    },
+                    "422": {
+                        "description": "422 Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/ValidationErrorResponseV1"
+                        }
+                    },
+                    "500": {
+                        "description": "500 Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "roles"
+                ],
+                "summary": "Attach permission to role",
+                "description": "Update role",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "auth",
+                        "in": "body",
+                        "description": "User that should be authorization",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/UserLoginRequestV1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 OK",
+                        "schema": {
+                            "properties": {
+                                "token": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "210": {
+                        "description": "210 Two way authorization requested",
+                        "schema": {
+                            "properties": {
+                                "hash": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UnauthorizedErrorResponseV1"
+                        }
+                    },
+                    "422": {
+                        "description": "422 Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/ValidationErrorResponseV1"
+                        }
+                    },
+                    "500": {
+                        "description": "500 Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "roles"
+                ],
+                "summary": "Detach permission from role",
+                "description": "Update role",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "auth",
+                        "in": "body",
+                        "description": "User that should be authorization",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/UserLoginRequestV1"
                         }
                     }
                 ],
@@ -962,7 +873,7 @@
                     "users"
                 ],
                 "summary": "Get one user by id",
-                "description": "Get one user by id\n    <br> **permission:** _view-users_",
+                "description": "Get one user by id\r\n    <br> **permission:** _view-users_",
                 "produces": [
                     "application/json"
                 ],
@@ -1003,7 +914,7 @@
                     "users"
                 ],
                 "summary": "Get all users",
-                "description": "Return all users\n    <br> **permission:** _view-users_",
+                "description": "Return all users\r\n    <br> **permission:** _view-users_",
                 "produces": [
                     "application/json"
                 ],
@@ -1160,12 +1071,11 @@
         }
     },
     "definitions": {
-        "OrganisationCreateRequestV1": {
+        "PermissionCreateRequestV1": {
             "required": [
-                "first_name",
-                "last_name",
-                "email",
-                "password"
+                "name",
+                "label",
+                "email"
             ],
             "properties": {
                 "name": {
@@ -1173,73 +1083,67 @@
                     "type": "string",
                     "example": "John"
                 },
-                "registered_name": {
-                    "description": "registered name",
+                "label": {
+                    "description": "label",
                     "type": "string",
-                    "example": "12343233"
-                },
-                "address": {
-                    "description": "address",
-                    "type": "string",
-                    "example": "Berlin 234"
-                },
-                "postal_code": {
-                    "description": "postal code",
-                    "type": "string",
-                    "example": "110000"
-                },
-                "town": {
-                    "description": "town",
-                    "type": "string",
-                    "example": "Berlin"
-                },
-                "email": {
-                    "description": "email",
-                    "type": "string",
-                    "example": "john@doe.com"
-                },
-                "phone": {
-                    "description": "phone",
-                    "type": "string",
-                    "example": "043/2213-23-44"
+                    "example": "Some label"
                 }
             }
         },
-        "OrganisationPhaseAttachRequestV1": {
+        "PermissionUpdateRequestV1": {
             "required": [
-                "phase_id"
-            ],
-            "properties": {
-                "phase_id": {
-                    "description": "first name",
-                    "type": "string",
-                    "example": "1"
-                }
-            }
-        },
-        "OrganisationPhaseSyncRequestV1": {
-            "required": [
-                "phases"
-            ],
-            "properties": {
-                "phases": {
-                    "description": "phases",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ArrayWithIdV1"
-                    }
-                }
-            }
-        },
-        "PhaseCreateRequestV1": {
-            "required": [
-                "name"
+                "name",
+                "label",
+                "email"
             ],
             "properties": {
                 "name": {
                     "description": "name",
                     "type": "string",
                     "example": "John"
+                },
+                "label": {
+                    "description": "label",
+                    "type": "string",
+                    "example": "Some label"
+                }
+            }
+        },
+        "RoleCreateRequestV1": {
+            "required": [
+                "name",
+                "label",
+                "email"
+            ],
+            "properties": {
+                "name": {
+                    "description": "name",
+                    "type": "string",
+                    "example": "John"
+                },
+                "label": {
+                    "description": "label",
+                    "type": "string",
+                    "example": "Some label"
+                }
+            }
+        },
+        "RoleUpdateRequestV1": {
+            "required": [
+                "name",
+                "label",
+                "email"
+            ],
+            "properties": {
+                "name": {
+                    "description": "name",
+                    "type": "string",
+                    "example": "John"
+                },
+                "label": {
+                    "description": "label",
+                    "type": "string",
+                    "example": "Some label"
                 }
             }
         },
@@ -1303,7 +1207,7 @@
                 }
             }
         },
-        "OrganisationTransformerV1": {
+        "PermissionIdTransformerV1": {
             "required": [],
             "properties": {
                 "id": {
@@ -1314,29 +1218,17 @@
                     "description": "name",
                     "type": "string"
                 },
-                "registeredName": {
-                    "description": "registeredName",
+                "subtitle": {
+                    "description": "subtitle",
                     "type": "string"
                 },
-                "address": {
-                    "description": "address",
-                    "type": "string"
-                },
-                "postalCode": {
-                    "description": "postalCode",
-                    "type": "string"
-                },
-                "town": {
-                    "description": "town",
-                    "type": "string"
-                },
-                "email": {
-                    "description": "email",
+                "active": {
+                    "description": "active",
                     "type": "string"
                 }
             }
         },
-        "PhaseTransformerV1": {
+        "PermissionTransformerV1": {
             "required": [],
             "properties": {
                 "id": {
@@ -1345,6 +1237,35 @@
                 },
                 "name": {
                     "description": "name",
+                    "type": "string"
+                },
+                "subtitle": {
+                    "description": "subtitle",
+                    "type": "string"
+                },
+                "active": {
+                    "description": "active",
+                    "type": "string"
+                }
+            }
+        },
+        "RoleTransformerV1": {
+            "required": [],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "subtitle": {
+                    "description": "subtitle",
+                    "type": "string"
+                },
+                "active": {
+                    "description": "active",
                     "type": "string"
                 }
             }

@@ -9,7 +9,7 @@ use SmartlyJobs\Entities\Permission\Models\Permission;
 
 /**
  * @SWG\Definition (
- *      definition="PermissionCreateRequestV1",
+ *      definition="PermissionUpdateRequestV1",
  *      required={"name", "label", "email"},
  *      @SWG\Property(
  *          property="name",

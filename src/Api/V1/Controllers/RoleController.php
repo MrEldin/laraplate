@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use SmartlyJobs\Api\V1\Requests\Role\RoleCreateRequest;
 use SmartlyJobs\Api\V1\Transformers\RoleTransformer;
 use SmartlyJobs\Entities\Role\Contracts\RoleRepository;
+use Swagger\Annotations as SWG;
 
 class RoleController extends Controller
 {
@@ -174,7 +175,6 @@ class RoleController extends Controller
             ->setStatusCode(Response::HTTP_OK);
     }
 
-
     /**
      * @SWG\Put(
      *      path="/api/roles",
@@ -239,11 +239,8 @@ class RoleController extends Controller
         $roleRepository->update($request->all(), $id);
     }
 
-
-
-
     /**
-     * @SWG\Put(
+     * @SWG\Delete(
      *      path="/api/roles/{id}",
      *      summary="Delete role",
      *      tags={"roles"},
@@ -306,9 +303,8 @@ class RoleController extends Controller
         $roleRepository->delete($id);
     }
 
-
     /**
-     * @SWG\Put(
+     * @SWG\Post(
      *      path="/api/roles/{roleId}/permissions/{permissionId}",
      *      summary="Attach permission to role",
      *      tags={"roles"},
@@ -375,9 +371,8 @@ class RoleController extends Controller
         return $this->response->item($role, new RoleTransformer())->setStatusCode(Response::HTTP_OK);
     }
 
-
     /**
-     * @SWG\Put(
+     * @SWG\Delete(
      *      path="/api/roles/{roleId}/permissions/{permissionId}",
      *      summary="Detach permission from role",
      *      tags={"roles"},
@@ -443,7 +438,6 @@ class RoleController extends Controller
 
         return $this->response->item($role, new RoleTransformer())->setStatusCode(Response::HTTP_OK);
     }
-
 
     /**
      * @SWG\Put(
