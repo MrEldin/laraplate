@@ -1,12 +1,12 @@
 <?php
 
-namespace SmartlyJobs\Api\V1\Controllers;
+namespace Laraplate\Api\V1\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use SmartlyJobs\Api\V1\Requests\User\UserCreateRequest;
-use SmartlyJobs\Api\V1\Transformers\UserTransformer;
-use SmartlyJobs\Entities\User\Contracts\UserRepository;
+use Laraplate\Api\V1\Requests\User\UserCreateRequest;
+use Laraplate\Api\V1\Transformers\UserTransformer;
+use Laraplate\Entities\User\Contracts\UserRepository;
 
 class UserController extends Controller
 {

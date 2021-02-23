@@ -1,5 +1,5 @@
 <?php
-namespace SmartlyJobs\Api\V1\Controllers;
+namespace Laraplate\Api\V1\Controllers;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Routing\Controller as BaseController;
 /**

@@ -17,15 +17,15 @@ services:
 
 ### MySQL Testing Container #########################################
 
-  mysql-test:
-   image: mysql:5.7
-   ports:
-     - "3303:3306"
-   environment:
-     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-     - MYSQL_DATABASE=homestead
-     - MYSQL_USER=homestead
-     - MYSQL_PASSWORD=secret
+#  mysql-test:
+#   image: mysql:5.7
+#   ports:
+#     - "3303:3306"
+#   environment:
+#     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+#     - MYSQL_DATABASE=homestead
+#     - MYSQL_USER=homestead
+#     - MYSQL_PASSWORD=secret
 
 ### Redis Container #########################################
 
@@ -47,7 +47,7 @@ services:
 
 ### NGINX Server Container ##################################
 
-  tempest.local:
+  nar.local:
    image: nginx
    volumes:
     - ./nginx.conf:/etc/nginx/conf.d/default.conf
@@ -55,7 +55,7 @@ services:
    ports:
     - "80:80"
    environment:
-    - NGINX_HOST=tempest.local
+    - NGINX_HOST=nar.local
     - NGINX_PORT=80
    links:
     - php
@@ -75,7 +75,7 @@ services:
    links:
 #     - mongo
      - mysql
-     - mysql-test
+#     - mysql-test
 
 ### PHP-FPM xdebug Container #######################################
 

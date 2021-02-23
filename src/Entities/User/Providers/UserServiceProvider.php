@@ -1,10 +1,10 @@
 <?php
 
-namespace SmartlyJobs\Entities\User\Providers;
+namespace Laraplate\Entities\User\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use SmartlyJobs\Entities\User\Contracts\UserRepository;
-use SmartlyJobs\Entities\User\Repositories\UserRepositoryEloquent;
+use Laraplate\Entities\User\Contracts\UserRepository;
+use Laraplate\Entities\User\Repositories\UserRepositoryEloquent;
 
 class UserServiceProvider extends ServiceProvider
 {

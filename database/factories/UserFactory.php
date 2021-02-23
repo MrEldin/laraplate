@@ -1,7 +1,8 @@
 <?php
+namespace Database\Factories;
 
 use Faker\Generator as Faker;
-use SmartlyJobs\Entities\User\Models\User;
+use Laraplate\Entities\User\Models\User;
 
 /*
 |--------------------------------------------------------------------------

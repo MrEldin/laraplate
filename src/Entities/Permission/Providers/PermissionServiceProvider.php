@@ -1,10 +1,10 @@
 <?php
 
-namespace SmartlyJobs\Entities\Permission\Providers;
+namespace Laraplate\Entities\Permission\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use SmartlyJobs\Entities\Permission\Contracts\PermissionRepository;
-use SmartlyJobs\Entities\Permission\Repositories\PermissionRepositoryEloquent;
+use Laraplate\Entities\Permission\Contracts\PermissionRepository;
+use Laraplate\Entities\Permission\Repositories\PermissionRepositoryEloquent;
 
 class PermissionServiceProvider extends ServiceProvider
 {

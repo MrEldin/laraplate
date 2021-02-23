@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model'  => \SmartlyJobs\Entities\User\Models\User::class,
+        'model'  => \Laraplate\Entities\User\Models\User::class,
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartlyJobs\Api\V1\Requests\User;
+namespace Laraplate\Api\V1\Requests\User;
 
 
 use Illuminate\Foundation\Http\FormRequest;

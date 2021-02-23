@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartlyJobs\Entities\User\Models;
+namespace Laraplate\Entities\User\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;

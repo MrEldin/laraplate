@@ -1,11 +1,11 @@
 <?php
 
-namespace SmartlyJobs\Entities\User\Repositories;
+namespace Laraplate\Entities\User\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use SmartlyJobs\Entities\User\Contracts\UserRepository;
-use SmartlyJobs\Entities\User\Models\User;
+use Laraplate\Entities\User\Contracts\UserRepository;
+use Laraplate\Entities\User\Models\User;
 
 /**
  * Class UserRepositoryEloquent

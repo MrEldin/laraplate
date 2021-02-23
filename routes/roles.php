@@ -1,6 +1,6 @@
 <?php
 
-use SmartlyJobs\Api\V1\Controllers\RoleController;
+use Laraplate\Api\V1\Controllers\RoleController;
 
 $api = app('Dingo\Api\Routing\Router');
 

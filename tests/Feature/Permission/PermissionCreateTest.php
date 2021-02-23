@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Permission;
 
-use SmartlyJobs\Entities\Permission\Models\Permission;
+use Laraplate\Entities\Permission\Models\Permission;
 use Tests\TestCase;
 
 class PermissionCreateTest extends TestCase

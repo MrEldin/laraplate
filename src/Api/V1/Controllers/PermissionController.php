@@ -1,14 +1,14 @@
 <?php
 
-namespace SmartlyJobs\Api\V1\Controllers;
+namespace Laraplate\Api\V1\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use SmartlyJobs\Api\V1\Requests\Permission\PermissionCreateRequest;
-use SmartlyJobs\Api\V1\Transformers\PermissionTransformer;
-use SmartlyJobs\Entities\Permission\Contracts\PermissionRepository;
-use SmartlyJobs\Entities\Permission\Models\Permission;
-use SmartlyJobs\Entities\User\Models\User;
+use Laraplate\Api\V1\Requests\Permission\PermissionCreateRequest;
+use Laraplate\Api\V1\Transformers\PermissionTransformer;
+use Laraplate\Entities\Permission\Contracts\PermissionRepository;
+use Laraplate\Entities\Permission\Models\Permission;
+use Laraplate\Entities\User\Models\User;
 
 class PermissionController extends Controller
 {

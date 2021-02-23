@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartlyJobs\Entities\Permission\Models;
+namespace Laraplate\Entities\Permission\Models;
 
 use Spatie\Permission\Models\Permission as PermissionMainModel;
 

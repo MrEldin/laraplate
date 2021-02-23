@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model'  => \SmartlyJobs\Entities\User\Models\User::class,
+            'model'  => \Laraplate\Entities\User\Models\User::class,
         ],
 
         // 'users' => [

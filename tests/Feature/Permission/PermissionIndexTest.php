@@ -4,9 +4,9 @@ namespace Tests\Feature\Permission;
 
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
-use SmartlyJobs\Api\V1\Transformers\PermissionTransformer;
-use SmartlyJobs\Entities\Permission\Models\Permission;
-use SmartlyJobs\Serializers\CustomSerializer;
+use Laraplate\Api\V1\Transformers\PermissionTransformer;
+use Laraplate\Entities\Permission\Models\Permission;
+use Laraplate\Serializers\CustomSerializer;
 use Tests\TestCase;
 
 class PermissionIndexTest extends TestCase

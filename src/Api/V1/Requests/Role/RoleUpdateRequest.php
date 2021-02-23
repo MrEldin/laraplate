@@ -1,11 +1,11 @@
 <?php
 
-namespace SmartlyJobs\Api\V1\Requests\Role;
+namespace Laraplate\Api\V1\Requests\Role;
 
 use Dingo\Api\Exception\StoreResourceFailedException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use SmartlyJobs\Entities\Role\Models\Role;
+use Laraplate\Entities\Role\Models\Role;
 
 /**
  * @SWG\Definition (

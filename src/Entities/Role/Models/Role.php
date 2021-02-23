@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartlyJobs\Entities\Role\Models;
+namespace Laraplate\Entities\Role\Models;
 
 use Spatie\Permission\Models\Role as RoleMainModel;
 

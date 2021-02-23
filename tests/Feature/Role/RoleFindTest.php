@@ -5,9 +5,9 @@ namespace Tests\Feature\Role;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
-use SmartlyJobs\Api\V1\Transformers\RoleTransformer;
-use SmartlyJobs\Entities\Role\Models\Role;
-use SmartlyJobs\Serializers\CustomSerializer;
+use Laraplate\Api\V1\Transformers\RoleTransformer;
+use Laraplate\Entities\Role\Models\Role;
+use Laraplate\Serializers\CustomSerializer;
 use Tests\TestCase;
 
 class RoleFindTest extends TestCase

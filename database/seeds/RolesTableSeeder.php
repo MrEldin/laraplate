@@ -1,6 +1,6 @@
 <?php
-
-use SmartlyJobs\Entities\Role\Models\Role;
+namespace Database\Seeders;
+use Laraplate\Entities\Role\Models\Role;
 use Illuminate\Database\Seeder;
 
 class RolesTableSeeder extends Seeder

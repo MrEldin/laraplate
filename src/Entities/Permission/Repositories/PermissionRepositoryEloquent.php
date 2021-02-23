@@ -1,11 +1,11 @@
 <?php
 
-namespace SmartlyJobs\Entities\Permission\Repositories;
+namespace Laraplate\Entities\Permission\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use SmartlyJobs\Entities\Permission\Contracts\PermissionRepository;
-use SmartlyJobs\Entities\Permission\Models\Permission;
+use Laraplate\Entities\Permission\Contracts\PermissionRepository;
+use Laraplate\Entities\Permission\Models\Permission;
 
 class PermissionRepositoryEloquent extends BaseRepository implements PermissionRepository
 {

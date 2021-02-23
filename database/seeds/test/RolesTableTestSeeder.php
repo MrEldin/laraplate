@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use SmartlyJobs\Entities\Role\Models\Role;
+use Laraplate\Entities\Role\Models\Role;
 
 class   RolesTableTestSeeder extends Seeder
 {

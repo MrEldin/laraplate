@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'SmartlyJobs\Api\V1\Controllers';
+    protected $namespace = 'Laraplate\Api\V1\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.

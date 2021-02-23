@@ -5,7 +5,7 @@ namespace App\Providers;
 use Dingo\Api\Transformer\Adapter\Fractal;
 use Illuminate\Support\ServiceProvider;
 use League\Fractal\Manager;
-use SmartlyJobs\Serializers\CustomSerializer;
+use Laraplate\Serializers\CustomSerializer;
 
 class AppServiceProvider extends ServiceProvider
 {

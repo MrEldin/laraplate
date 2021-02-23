@@ -1,11 +1,11 @@
 <?php
 
-namespace SmartlyJobs\Api\V1\Requests\Permission;
+namespace Laraplate\Api\V1\Requests\Permission;
 
 use Dingo\Api\Exception\StoreResourceFailedException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use SmartlyJobs\Entities\Permission\Models\Permission;
+use Laraplate\Entities\Permission\Models\Permission;
 
 /**
  * @SWG\Definition (

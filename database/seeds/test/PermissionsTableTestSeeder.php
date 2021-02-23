@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use SmartlyJobs\Entities\Permission\Models\Permission;
-use SmartlyJobs\Entities\Role\Models\Role;
+use Laraplate\Entities\Permission\Models\Permission;
+use Laraplate\Entities\Role\Models\Role;
 
 class PermissionsTableTestSeeder extends Seeder
 {

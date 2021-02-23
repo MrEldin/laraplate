@@ -1,7 +1,7 @@
 <?php
 
 
-use SmartlyJobs\Api\V1\Controllers\AuthController;
+use Laraplate\Api\V1\Controllers\AuthController;
 
 $api = app('Dingo\Api\Routing\Router');
 

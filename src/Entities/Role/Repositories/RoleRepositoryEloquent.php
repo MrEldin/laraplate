@@ -1,11 +1,11 @@
 <?php
 
-namespace SmartlyJobs\Entities\Role\Repositories;
+namespace Laraplate\Entities\Role\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use SmartlyJobs\Entities\Role\Contracts\RoleRepository;
-use SmartlyJobs\Entities\Role\Models\Role;
+use Laraplate\Entities\Role\Contracts\RoleRepository;
+use Laraplate\Entities\Role\Models\Role;
 
 class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
 {

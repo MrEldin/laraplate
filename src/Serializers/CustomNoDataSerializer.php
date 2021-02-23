@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartlyJobs\Serializers;
+namespace Laraplate\Serializers;
 
 use League\Fractal\Serializer\ArraySerializer;
 

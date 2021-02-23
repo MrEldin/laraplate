@@ -227,7 +227,7 @@ return [
     */
     'generator'  => [
         'basePath'      => base_path('/src'),
-        'rootNamespace' => 'SmartlyJobs\\',
+        'rootNamespace' => 'Laraplate\\',
         'stubsOverridePath' => base_path('/src'),
         'paths'         => [
             'models'       => 'Entities',

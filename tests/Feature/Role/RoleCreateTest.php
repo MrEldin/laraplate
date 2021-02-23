@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Role;
 
-use SmartlyJobs\Entities\Role\Models\Role;
+use Laraplate\Entities\Role\Models\Role;
 use Tests\TestCase;
 
 class RoleCreateTest extends TestCase

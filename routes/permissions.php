@@ -1,6 +1,6 @@
 <?php
 
-use SmartlyJobs\Api\V1\Controllers\PermissionController;
+use Laraplate\Api\V1\Controllers\PermissionController;
 
 $api = app('Dingo\Api\Routing\Router');
 

@@ -1,7 +1,7 @@
 <?php
-
+namespace Database\Seeders;
 use Illuminate\Database\Seeder;
-use SmartlyJobs\Entities\User\Models\User;
+use Laraplate\Entities\User\Models\User;
 
 class UsersTableSeeder extends Seeder
 {

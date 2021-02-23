@@ -3,7 +3,7 @@
 namespace Tests\Feature\Role;
 
 use Illuminate\Http\Response;
-use SmartlyJobs\Entities\Role\Models\Role;
+use Laraplate\Entities\Role\Models\Role;
 use Tests\TestCase;
 
 class RoleCreateXTest extends TestCase

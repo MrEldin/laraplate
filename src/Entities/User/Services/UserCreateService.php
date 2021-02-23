@@ -1,9 +1,9 @@
 <?php
 
-namespace SmartlyJobs\Entities\User\Services;
+namespace Laraplate\Entities\User\Services;
 
-use SmartlyJobs\Entities\User\Contracts\UserRepository;
-use SmartlyJobs\Entities\User\Models\User;
+use Laraplate\Entities\User\Contracts\UserRepository;
+use Laraplate\Entities\User\Models\User;
 
 class UserCreateService
 {

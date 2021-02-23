@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use SmartlyJobs\Entities\User\Models\User;
+use Laraplate\Entities\User\Models\User;
 
 class RegisterController extends Controller
 {

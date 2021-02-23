@@ -1,9 +1,9 @@
 <?php
 
-namespace SmartlyJobs\Api\V1\Transformers;
+namespace Laraplate\Api\V1\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use SmartlyJobs\Entities\User\Models\User;
+use Laraplate\Entities\User\Models\User;
 
 /**
  * @SWG\Definition (

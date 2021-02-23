@@ -1,11 +1,11 @@
 <?php
 
-namespace SmartlyJobs\Api\V1\Requests\User;
+namespace Laraplate\Api\V1\Requests\User;
 
 use Dingo\Api\Exception\StoreResourceFailedException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use SmartlyJobs\Entities\User\Models\User;
+use Laraplate\Entities\User\Models\User;
 
 
 /**

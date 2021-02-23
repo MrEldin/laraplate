@@ -5,9 +5,9 @@ namespace Tests\Feature\User;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
-use SmartlyJobs\Api\V1\Transformers\UserTransformer;
-use SmartlyJobs\Entities\User\Models\User;
-use SmartlyJobs\Serializers\CustomSerializer;
+use Laraplate\Api\V1\Transformers\UserTransformer;
+use Laraplate\Entities\User\Models\User;
+use Laraplate\Serializers\CustomSerializer;
 use Tests\TestCase;
 
 class UserFindTest extends TestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartlyJobs\Repositories;
+namespace Laraplate\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 

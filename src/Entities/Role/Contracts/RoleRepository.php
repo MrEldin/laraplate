@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartlyJobs\Entities\Role\Contracts;
+namespace Laraplate\Entities\Role\Contracts;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
 

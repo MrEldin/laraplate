@@ -1,9 +1,9 @@
 <?php
 
-namespace SmartlyJobs\Api\V1\Controllers;
+namespace Laraplate\Api\V1\Controllers;
 
-use SmartlyJobs\Api\V1\Requests\User\UserLoginRequest;
-use SmartlyJobs\Entities\User\Services\UserLoginService;
+use Laraplate\Api\V1\Requests\User\UserLoginRequest;
+use Laraplate\Entities\User\Services\UserLoginService;
 
 class AuthController extends Controller
 {

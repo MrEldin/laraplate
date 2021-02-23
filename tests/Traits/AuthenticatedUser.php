@@ -3,7 +3,7 @@
 namespace Tests\Traits;
 
 
-use SmartlyJobs\Entities\User\Models\User;
+use Laraplate\Entities\User\Models\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 trait AuthenticatedUser
@@ -16,7 +16,7 @@ trait AuthenticatedUser
     public function createAuthenticatedUser($role = 'super-admin')
     {
         $this->authenticatedUser = factory(User::class)->create([
-            User::EMAIL       => 'admin@smartlyjobs.app',
+            User::EMAIL       => 'admin@Laraplate.app',
             User::PASSWORD    => 'password',
         ]);
 

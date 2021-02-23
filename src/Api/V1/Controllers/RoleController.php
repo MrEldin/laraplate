@@ -1,12 +1,12 @@
 <?php
 
-namespace SmartlyJobs\Api\V1\Controllers;
+namespace Laraplate\Api\V1\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use SmartlyJobs\Api\V1\Requests\Role\RoleCreateRequest;
-use SmartlyJobs\Api\V1\Transformers\RoleTransformer;
-use SmartlyJobs\Entities\Role\Contracts\RoleRepository;
+use Laraplate\Api\V1\Requests\Role\RoleCreateRequest;
+use Laraplate\Api\V1\Transformers\RoleTransformer;
+use Laraplate\Entities\Role\Contracts\RoleRepository;
 use Swagger\Annotations as SWG;
 
 class RoleController extends Controller

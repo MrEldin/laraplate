@@ -1,9 +1,9 @@
 <?php
 
-namespace SmartlyJobs\Api\V1\Transformers;
+namespace Laraplate\Api\V1\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use SmartlyJobs\Entities\Permission\Models\Permission as AppPermission;
+use Laraplate\Entities\Permission\Models\Permission as AppPermission;
 use Spatie\Permission\Models\Permission;
 
 /**

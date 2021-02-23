@@ -161,10 +161,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        SmartlyJobs\Entities\User\Providers\UserServiceProvider::class,
+        Laraplate\Entities\User\Providers\UserServiceProvider::class,
         \Intervention\Image\ImageServiceProvider::class,
-        \SmartlyJobs\Entities\Role\Providers\RoleServiceProvider::class,
-        \SmartlyJobs\Entities\Permission\Providers\PermissionServiceProvider::class,
+        \Laraplate\Entities\Role\Providers\RoleServiceProvider::class,
+        \Laraplate\Entities\Permission\Providers\PermissionServiceProvider::class,
     ],
 
     /*

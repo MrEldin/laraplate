@@ -3,7 +3,7 @@
 namespace Tests\Feature\User;
 
 use Illuminate\Http\Response;
-use SmartlyJobs\Entities\User\Models\User;
+use Laraplate\Entities\User\Models\User;
 use Tests\TestCase;
 
 class UserUpdateTest extends TestCase

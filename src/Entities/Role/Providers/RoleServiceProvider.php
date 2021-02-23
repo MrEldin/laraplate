@@ -1,10 +1,10 @@
 <?php
 
-namespace SmartlyJobs\Entities\Role\Providers;
+namespace Laraplate\Entities\Role\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use SmartlyJobs\Entities\Role\Contracts\RoleRepository;
-use SmartlyJobs\Entities\Role\Repositories\RoleRepositoryEloquent;
+use Laraplate\Entities\Role\Contracts\RoleRepository;
+use Laraplate\Entities\Role\Repositories\RoleRepositoryEloquent;
 
 class RoleServiceProvider extends ServiceProvider
 {

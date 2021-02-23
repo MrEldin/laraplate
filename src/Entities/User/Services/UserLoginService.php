@@ -1,5 +1,5 @@
 <?php
-namespace SmartlyJobs\Entities\User\Services;
+namespace Laraplate\Entities\User\Services;
 
 class UserLoginService
 {
