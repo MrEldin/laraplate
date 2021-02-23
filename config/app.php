@@ -161,7 +161,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Barryvdh\Cors\ServiceProvider::class,
         SmartlyJobs\Entities\User\Providers\UserServiceProvider::class,
         \Intervention\Image\ImageServiceProvider::class,
         \SmartlyJobs\Entities\Role\Providers\RoleServiceProvider::class,
@@ -217,7 +216,6 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'LinkedIn'  => \Artesaos\LinkedIn\Facades\LinkedIn::class,
 
     ],
 
