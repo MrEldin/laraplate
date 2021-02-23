@@ -7,31 +7,6 @@ use Laraplate\Entities\Permission\Models\Permission as AppPermission;
 use Spatie\Permission\Models\Permission;
 
 /**
- * @SWG\Definition (
- *      definition="PermissionIdTransformerV1",
- *      required={},
- *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer"
- *      ),
- *      @SWG\Property(
- *          property="name",
- *          description="name",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="subtitle",
- *          description="subtitle",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="active",
- *          description="active",
- *          type="string"
- *      )
- * )
- *
  * Class PermissionTransformer
  *
  * @package Tempest\Api\V1\Transformers

@@ -9,35 +9,6 @@ use Laraplate\Entities\User\Models\User;
 
 
 /**
- * @SWG\Definition (
- *      definition="UserCreateRequestV1",
- *      required={"first_name", "last_name", "email", "password"},
- *      @SWG\Property(
- *          property="first_name",
- *          description="first name",
- *          type="string",
- *          example="John"
- *      ),
- *      @SWG\Property(
- *          property="last_name",
- *          description="last name",
- *          type="string",
- *          example="Doe"
- *      ),
- *      @SWG\Property(
- *          property="email",
- *          description="email",
- *          type="string",
- *          example="john@example.com"
- *      ),
- *      @SWG\Property(
- *          property="password",
- *          description="password",
- *          type="string",
- *          example="password"
- *      )
- * )
- *
  * Class UserCreateRequest
  * @package Tempest\Api\V1\Requests\User
  */

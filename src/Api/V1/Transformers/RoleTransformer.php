@@ -6,31 +6,6 @@ use League\Fractal\TransformerAbstract;
 use Laraplate\Entities\Role\Models\Role;
 
 /**
- * @SWG\Definition (
- *      definition="RoleTransformerV1",
- *      required={},
- *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer"
- *      ),
- *      @SWG\Property(
- *          property="name",
- *          description="name",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="subtitle",
- *          description="subtitle",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="active",
- *          description="active",
- *          type="string"
- *      )
- * )
- *
  * Class RoleTransformer
  *
  * @package Tempest\Api\V1\Transformers

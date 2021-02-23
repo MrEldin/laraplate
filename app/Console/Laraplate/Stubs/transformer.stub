@@ -6,16 +6,6 @@ use League\Fractal\TransformerAbstract;
 use $MODEL$;
 
 /**
- * @SWG\Definition (
- *      definition="$CLASS$TransformerV1",
- *      required={},
- *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer"
- *      )
- * )
- *
  * Class $CLASS$Transformer
  *
  * @package Tempest\Api\V1\Transformers

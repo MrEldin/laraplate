@@ -7,27 +7,6 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Laraplate\Entities\Permission\Models\Permission;
 
-/**
- * @SWG\Definition (
- *      definition="PermissionUpdateRequestV1",
- *      required={"name", "label", "email"},
- *      @SWG\Property(
- *          property="name",
- *          description="name",
- *          type="string",
- *          example="John"
- *      ),
- *      @SWG\Property(
- *          property="label",
- *          description="label",
- *          type="string",
- *          example="Some label"
- *      )
- * )
- *
- * Class PermissionCreateRequest
- * @package Tempest\Api\V1\Requests\User
- */
 class PermissionUpdateRequest extends FormRequest
 {
     /**

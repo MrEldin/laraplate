@@ -10,7 +10,6 @@ It is built with packages:
 
 * JWT-Auth - [tymondesigns/jwt-auth](https://github.com/tymondesigns/jwt-auth)
 * Laravel-CORS [barryvdh/laravel-cors](http://github.com/barryvdh/laravel-cors)
-* Laravel Swagger [jlapp/swaggervel](https://github.com/slampenny/Swaggervel)
 * Laravel Permissions [spatie/laravel-permission](https://github.com/spatie/laravel-permission)
 * L5-repository [andersao/l5-repository](https://github.com/andersao/l5-repository)
 

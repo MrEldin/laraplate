@@ -8,16 +8,6 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use $MODEL$;
 
-
-/**
- * @SWG\Definition (
- *      definition="$CLASS$RequestV1",
- *      required={},
- * )
- *
- * Class $CLASS$CreateRequest
- * @package Tempest\Api\V1\Requests\$CLASS$
- */
 class $CLASS$Request extends FormRequest
 {
     /**

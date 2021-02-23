@@ -19,57 +19,6 @@ class AuthController extends Controller
     }
 
     /**
-     * @SWG\Post(
-     *      path="/api/login",
-     *      summary="User authorization",
-     *      tags={"auth"},
-     *      description="Authorize a user",
-     *      produces={"application/json"},
-     *      @SWG\Parameter(
-     *          name="auth",
-     *          in="body",
-     *          description="User that should be authorization",
-     *          required=false,
-     *          @SWG\Schema(ref="#/definitions/UserLoginRequestV1")
-     *      ),
-     *      @SWG\Response(
-     *          response=200,
-     *          description="200 OK",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="token",
-     *                  type="string"
-     *              )
-     *          )
-     *      ),
-     *     @SWG\Response(
-     *          response=210,
-     *          description="210 Two way authorization requested",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="hash",
-     *                  type="string"
-     *              )
-     *          )
-     *      ),
-     *      @SWG\Response(
-     *          response=401,
-     *          description="401 Unauthorized",
-     *          @SWG\Schema(ref="#/definitions/UnauthorizedErrorResponseV1")
-     *      ),
-     *      @SWG\Response(
-     *          response=422,
-     *          description="422 Unprocessable Entity",
-     *          @SWG\Schema(ref="#/definitions/ValidationErrorResponseV1")
-     *      ),
-     *      @SWG\Response(
-     *          response=500,
-     *          description="500 Server Error",
-     *      )
-     * )
-     *
      * Get a JWT via given credentials.
      *
      * @param UserLoginRequest $request
@@ -88,49 +37,6 @@ class AuthController extends Controller
     }
 
     /**
-     * @SWG\Get(
-     *      path="/api/me",
-     *      summary="Authorizated user",
-     *      tags={"auth"},
-     *      description="User that is logged in",
-     *      produces={"application/json"},
-     *      @SWG\Response(
-     *          response=200,
-     *          description="200 OK",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="token",
-     *                  type="string"
-     *              )
-     *          )
-     *      ),
-     *     @SWG\Response(
-     *          response=210,
-     *          description="210 Two way authorization requested",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="hash",
-     *                  type="string"
-     *              )
-     *          )
-     *      ),
-     *      @SWG\Response(
-     *          response=401,
-     *          description="401 Unauthorized",
-     *          @SWG\Schema(ref="#/definitions/UnauthorizedErrorResponseV1")
-     *      ),
-     *      @SWG\Response(
-     *          response=422,
-     *          description="422 Unprocessable Entity",
-     *          @SWG\Schema(ref="#/definitions/ValidationErrorResponseV1")
-     *      ),
-     *      @SWG\Response(
-     *          response=500,
-     *          description="500 Server Error",
-     *      )
-     * )
      *
      * Get the authenticated User.
      *
@@ -147,50 +53,6 @@ class AuthController extends Controller
 
 
     /**
-     * @SWG\Post(
-     *      path="/api/logout",
-     *      summary="Logout user",
-     *      tags={"auth"},
-     *      description="Deactivate jwt token",
-     *      produces={"application/json"},
-     *      @SWG\Response(
-     *          response=200,
-     *          description="200 OK",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="token",
-     *                  type="string"
-     *              )
-     *          )
-     *      ),
-     *     @SWG\Response(
-     *          response=210,
-     *          description="210 Two way authorization requested",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="hash",
-     *                  type="string"
-     *              )
-     *          )
-     *      ),
-     *      @SWG\Response(
-     *          response=401,
-     *          description="401 Unauthorized",
-     *          @SWG\Schema(ref="#/definitions/UnauthorizedErrorResponseV1")
-     *      ),
-     *      @SWG\Response(
-     *          response=422,
-     *          description="422 Unprocessable Entity",
-     *          @SWG\Schema(ref="#/definitions/ValidationErrorResponseV1")
-     *      ),
-     *      @SWG\Response(
-     *          response=500,
-     *          description="500 Server Error",
-     *      )
-     * )
-     *
      * Log the user out (Invalidate the token).
      *
      * @return \Illuminate\Http\JsonResponse
@@ -204,50 +66,6 @@ class AuthController extends Controller
 
 
     /**
-     * @SWG\Post(
-     *      path="/api/refresh",
-     *      summary="Refresh token",
-     *      tags={"auth"},
-     *      description="Refresh jwt token",
-     *      produces={"application/json"},
-     *      @SWG\Response(
-     *          response=200,
-     *          description="200 OK",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="token",
-     *                  type="string"
-     *              )
-     *          )
-     *      ),
-     *     @SWG\Response(
-     *          response=210,
-     *          description="210 Two way authorization requested",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="hash",
-     *                  type="string"
-     *              )
-     *          )
-     *      ),
-     *      @SWG\Response(
-     *          response=401,
-     *          description="401 Unauthorized",
-     *          @SWG\Schema(ref="#/definitions/UnauthorizedErrorResponseV1")
-     *      ),
-     *      @SWG\Response(
-     *          response=422,
-     *          description="422 Unprocessable Entity",
-     *          @SWG\Schema(ref="#/definitions/ValidationErrorResponseV1")
-     *      ),
-     *      @SWG\Response(
-     *          response=500,
-     *          description="500 Server Error",
-     *      )
-     * )
-     *
      * Refresh a token.
      *
      * @return \Illuminate\Http\JsonResponse
