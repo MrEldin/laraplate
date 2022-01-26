@@ -55,7 +55,7 @@ class MakeLaraplateServiceProvider extends Command
                 'name' => $this->argument('name')
             ]))->run();
 
-            $this->info("Nar service provider successfully created.");
+            $this->info("Laraplate service provider successfully created.");
 
         } catch (\Exception $e) {
             $this->error($this->type . ' already exists!');

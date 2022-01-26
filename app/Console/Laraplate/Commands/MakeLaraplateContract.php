@@ -50,7 +50,7 @@ class MakeLaraplateContract extends Command
                 'name'  => $this->argument('name'),
             ]))->run();
 
-            $this->info("Nar contract successfully created.");
+            $this->info("Laraplate contract successfully created.");
 
         } catch (\Exception $e) {
             $this->error($this->type . ' already exists!');

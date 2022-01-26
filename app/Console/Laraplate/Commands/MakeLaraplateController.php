@@ -106,7 +106,7 @@ class MakeLaraplateController extends Command
 
             $this->generateTests($model);
 
-            $this->info("Nar controller successfully created.");
+            $this->info("Laraplate controller successfully created.");
             $this->info("Please register new service provider created in app.php config file.");
 
         } catch (\Exception $e) {

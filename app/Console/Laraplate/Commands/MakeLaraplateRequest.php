@@ -56,7 +56,7 @@ class MakeLaraplateRequest extends Command
                 'model' => $model
             ]))->run();
 
-            $this->info("Nar request successfully created.");
+            $this->info("Laraplate request successfully created.");
 
         } catch (\Exception $e) {
             $this->error($this->type . ' already exists!');
