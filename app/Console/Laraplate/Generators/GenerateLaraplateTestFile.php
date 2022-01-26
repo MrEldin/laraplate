@@ -36,7 +36,7 @@ class GenerateLaraplateTestFile extends Generator
      */
     public function getRootNamespace()
     {
-        return 'Tests\\Functional\\' . $this->getOnlyName();
+        return 'Tests\\Feature\\' . $this->getOnlyName();
     }
 
     /**
