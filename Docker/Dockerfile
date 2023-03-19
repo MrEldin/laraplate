@@ -1,4 +1,6 @@
-FROM php:7.3-fpm
+FROM php:8.2-fpm
+
+RUN apt-get clean
 
 # Install "curl", "libmemcached-dev", "libpq-dev", "libjpeg-dev",
 #         "libpng12-dev", "libfreetype6-dev", "libssl-dev", "libmcrypt-dev",
@@ -18,7 +20,7 @@ RUN apt-get update \
     unzip \
     zip \
     ssh-client \
-  && pecl install mcrypt-1.0.2 \
+  && pecl install -n mcrypt \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential xorg libssl-dev libxrender-dev wget gdebi tar \
   && wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
   && tar vxf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
@@ -37,19 +39,17 @@ RUN docker-php-ext-enable mcrypt \
   && docker-php-ext-install pdo_pgsql \
   # Install the PHP gd library
   && docker-php-ext-configure gd \
-    --with-jpeg-dir=/usr/lib \
-    --with-freetype-dir=/usr/include/freetype2 && \
+    --with-freetype \
+    --with-jpeg && \
     docker-php-ext-install gd \
   && docker-php-ext-configure zip \
-     --with-libzip=/usr/include \
-  && docker-php-ext-configure zip --with-libzip=/usr/include \
   && docker-php-ext-install zip
 
 
 #RUN pecl install xdebug-2.5.0 \
 #    docker-php-ext-enable  xdebug
 #
-RUN pecl install mongodb \
-    docker-php-ext-enable mongodb
+#RUN pecl install mongodb \
+#    docker-php-ext-enable mongodb
 
 EXPOSE 6001

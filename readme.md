@@ -4,12 +4,11 @@
 
 Laraplate is Laravel API boilerplate
 
-This version is built on Laravel 6.0!
+This version is built on Laravel 9!
 
 It is built with packages:
 
 * JWT-Auth - [tymondesigns/jwt-auth](https://github.com/tymondesigns/jwt-auth)
-* Laravel-CORS [barryvdh/laravel-cors](http://github.com/barryvdh/laravel-cors)
 * Laravel Permissions [spatie/laravel-permission](https://github.com/spatie/laravel-permission)
 * L5-repository [andersao/l5-repository](https://github.com/andersao/l5-repository)
 
