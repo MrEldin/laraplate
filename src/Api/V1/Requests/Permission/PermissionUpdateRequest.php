@@ -5,6 +5,7 @@ namespace Laraplate\Api\V1\Requests\Permission;
 use Dingo\Api\Exception\StoreResourceFailedException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Laraplate\Entities\Permission\Models\Permission;
 
 class PermissionUpdateRequest extends FormRequest
@@ -34,10 +35,10 @@ class PermissionUpdateRequest extends FormRequest
     /**
      * Handle a failed validation attempt.
      *
-     * @param  \Illuminate\Contracts\Validation\Validator $validator
+     * @param Validator $validator
      * @return mixed
      *
-     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     * @throws HttpResponseException
      */
     protected function failedValidation(Validator $validator)
     {
