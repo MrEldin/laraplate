@@ -56,7 +56,7 @@ class MakeLaraplateRepository extends Command
                 'model' => $model
             ]))->run();
 
-            $this->info("Nar repository successfully created.");
+            $this->info("Laraplate repository successfully created.");
 
         } catch (\Exception $e) {
             $this->error($this->type . ' already exists!');

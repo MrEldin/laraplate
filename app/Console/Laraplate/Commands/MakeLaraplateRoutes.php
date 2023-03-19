@@ -58,7 +58,7 @@ class MakeLaraplateRoutes extends Command
                 'name' => $this->argument('name')
             ]))->run();
 
-            $this->info("Nar routes file successfully created.");
+            $this->info("Laraplate routes file successfully created.");
             $this->info("Please do not forget to register new routes file in Route Service Provider");
 
         } catch (\Exception $e) {

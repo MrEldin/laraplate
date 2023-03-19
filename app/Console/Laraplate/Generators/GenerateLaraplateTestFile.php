@@ -2,7 +2,7 @@
 
 namespace App\Console\Laraplate\Generators;
 
-use App\Console\Commands\Nar\Generator;
+use App\Console\Laraplate\Generator;
 use Illuminate\Support\Str;
 use Prettus\Repository\Generators\Migrations\SchemaParser;
 use Prettus\Repository\Generators\ValidatorGenerator;
@@ -36,7 +36,7 @@ class GenerateLaraplateTestFile extends Generator
      */
     public function getRootNamespace()
     {
-        return 'Tests\\Functional\\' . $this->getOnlyName();
+        return 'Tests\\Feature\\' . $this->getOnlyName();
     }
 
     /**

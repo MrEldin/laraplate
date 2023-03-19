@@ -55,7 +55,7 @@ class MakeLaraplateTransformer extends Command
                 'model' => $model
             ]))->run();
 
-            $this->info("Nar transformer successfully created.");
+            $this->info("Laraplate transformer successfully created.");
 
         } catch (\Exception $e) {
             $this->error($this->type . ' already exists!');

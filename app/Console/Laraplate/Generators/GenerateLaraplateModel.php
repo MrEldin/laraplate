@@ -2,7 +2,7 @@
 
 namespace App\Console\Laraplate\Generators;
 
-use App\Console\Commands\Nar\Generator;
+use App\Console\Laraplate\Generator;
 use Illuminate\Support\Str;
 
 class GenerateLaraplateModel extends Generator
