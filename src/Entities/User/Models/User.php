@@ -5,13 +5,15 @@ namespace Laraplate\Entities\User\Models;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
+use Laraplate\AI\Concerns\HasAi;
+use Laraplate\AI\Contracts\HasAiContext;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable implements HasAiContext, JWTSubject
 {
-    use HasFactory, Notifiable, HasRoles;
+    use HasAi, HasFactory, Notifiable, HasRoles;
 
     const TABLE = 'users';
 
@@ -86,5 +88,32 @@ class User extends Authenticatable implements JWTSubject
     protected static function newFactory(): UserFactory
     {
         return UserFactory::new();
+    }
+
+    /**
+     * Describe what this entity represents, in the application's own terms.
+     */
+    public function aiDescription(): string
+    {
+        return 'This record is an application user. Roles and permissions decide what they may do; '
+            .'the password hash and remember token are deliberately withheld.';
+    }
+
+    /**
+     * Get the relations a model may load, keyed by the name exposed to it.
+     *
+     * @return array<string, string>
+     */
+    public function aiRelations(): array
+    {
+        return ['roles' => 'roles'];
+    }
+
+    /**
+     * Get a short human readable label.
+     */
+    public function aiLabel(): string
+    {
+        return sprintf('User #%s (%s)', $this->getKey() ?? 'unsaved', $this->{self::EMAIL});
     }
 }

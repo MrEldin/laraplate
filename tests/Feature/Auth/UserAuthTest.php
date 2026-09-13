@@ -1,43 +1,29 @@
 <?php
 
-namespace Tests\Feature\Auth;
-
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
 use Laraplate\Entities\User\Models\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class UserAuthTest extends TestCase
-{
-    use DatabaseMigrations;
+it('logs a user in and issues a token for them', function () {
+    $user = User::factory()->create([User::PASSWORD => 'password']);
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
+    $response = $this->post('/api/login', [
+        User::EMAIL => $user->{User::EMAIL},
+        User::PASSWORD => 'password',
+    ]);
 
-    #[Test]
-    public function it_should_login_a_user()
-    {
-        // arrange
-        $user = User::factory()->create([User::PASSWORD => 'password']);
+    $token = $response->getOriginalContent()['access_token'];
+    $subject = JWTAuth::setToken($token)->getPayload()->getClaims()['sub']->getValue();
 
-        // act
-        $response = $this->post("/api/login", [
-            User::EMAIL => $user->{User::EMAIL},
-            User::PASSWORD => 'password'
-        ]);
+    expect($subject)->toEqual($user->id);
+});
 
-        // assert
-        $content = $response->getOriginalContent();
-        $token = $content['access_token'];
+it('rejects an invalid password', function () {
+    $user = User::factory()->create([User::PASSWORD => 'password']);
 
-        $tokenPayload = JWTAuth::setToken($token)->getPayload();
-        $tokenContent = $tokenPayload->getClaims();
-        $fetchedUserIdFromToken = $tokenContent['sub']->getValue();
+    $response = $this->post('/api/login', [
+        User::EMAIL => $user->{User::EMAIL},
+        User::PASSWORD => 'not-the-password',
+    ], ['Accept' => 'application/json']);
 
-        $this->assertEquals($user->id, $fetchedUserIdFromToken, 'User id from token is not as expected');
-    }
-
-}
+    expect($response->getStatusCode())->toBe(Symfony\Component\HttpFoundation\Response::HTTP_UNAUTHORIZED);
+});
