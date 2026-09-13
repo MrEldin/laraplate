@@ -4,27 +4,29 @@ namespace Tests\Feature\Role;
 
 use Illuminate\Http\Response;
 use Laraplate\Entities\Role\Models\Role;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class RoleCreateXTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
 
     /**
-     * @test
-     * @dataProvider agencyCreateInvalidData
      * @param $data
      * @param $message
      * @param $type
      */
+    #[Test]
+    #[DataProvider('agencyCreateInvalidData')]
     public function it_should_fail_create_role_on_invalid_request($data, $message, $type)
     {
         //ARRANGE
-        $role = factory(Role::class)->create();
+        $role = Role::factory()->create();
 
         $roleData = $role->toArray();
         $roleData[$type] = $data[$type];
@@ -42,7 +44,7 @@ class RoleCreateXTest extends TestCase
         $this->assertEquals($message, $response->getOriginalContent()['errors']->get($type)[0]);
     }
 
-    public function agencyCreateInvalidData()
+    public static function agencyCreateInvalidData()
     {
         return [
             #0 Empty role name

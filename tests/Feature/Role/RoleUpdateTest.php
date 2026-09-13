@@ -4,21 +4,22 @@ namespace Tests\Feature\Role;
 
 use Illuminate\Http\Response;
 use Laraplate\Entities\Role\Models\Role;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class RoleUpdateTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_should_update_role()
     {
         //ARRANGE
-        $roleData = factory(Role::class)->create();
-        $roleUpdateData = factory(Role::class)->make();
+        $roleData = Role::factory()->create();
+        $roleUpdateData = Role::factory()->make();
 
         //ACT
         $response = $this->put(

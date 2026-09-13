@@ -3,6 +3,7 @@
 namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use Laraplate\Entities\User\Models\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -11,16 +12,16 @@ class UserAuthTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_should_login_a_user()
     {
         // arrange
-        $user = factory(User::class)->create([User::PASSWORD => 'password']);
+        $user = User::factory()->create([User::PASSWORD => 'password']);
 
         // act
         $response = $this->post("/api/login", [

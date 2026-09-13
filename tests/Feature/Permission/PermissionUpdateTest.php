@@ -4,21 +4,22 @@ namespace Tests\Feature\Permission;
 
 use Illuminate\Http\Response;
 use Laraplate\Entities\Permission\Models\Permission;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class PermissionUpdateTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_should_update_permission()
     {
         //ARRANGE
-        $permissionData = factory(Permission::class)->create();
-        $permissionUpdateData = factory(Permission::class)->make();
+        $permissionData = Permission::factory()->create();
+        $permissionUpdateData = Permission::factory()->make();
 
         //ACT
         $response = $this->put(

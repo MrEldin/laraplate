@@ -1,23 +1,33 @@
 <?php
+
 namespace Database\Factories;
 
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Laraplate\Entities\Role\Models\Role;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Laraplate\Entities\Role\Models\Role>
+ */
+class RoleFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var class-string<\Laraplate\Entities\Role\Models\Role>
+     */
+    protected $model = Role::class;
 
-$factory->define(Role::class, function (Faker $faker) {
-    return [
-        Role::NAME  => $faker->name,
-        Role::LABEL => $faker->word,
-    ];
-});
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            Role::NAME       => fake()->unique()->name(),
+            Role::LABEL      => fake()->word(),
+            Role::GUARD_NAME => config('auth.defaults.guard'),
+        ];
+    }
+}

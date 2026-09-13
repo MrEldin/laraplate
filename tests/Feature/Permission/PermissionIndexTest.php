@@ -2,26 +2,27 @@
 
 namespace Tests\Feature\Permission;
 
-use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
+use PHPOpenSourceSaver\Fractal\Manager;
+use PHPOpenSourceSaver\Fractal\Resource\Collection;
 use Laraplate\Api\V1\Transformers\PermissionTransformer;
 use Laraplate\Entities\Permission\Models\Permission;
 use Laraplate\Serializers\CustomSerializer;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class PermissionIndexTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_should_get_all_permissions()
     {
         //ARRANGE
         Permission::truncate();
-        $permissionData = factory(Permission::class, 2)->create();
+        $permissionData = Permission::factory()->count(2)->create();
 
         //ACT
         $response = $this->get(

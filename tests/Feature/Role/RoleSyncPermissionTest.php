@@ -2,28 +2,29 @@
 
 namespace Tests\Feature\Role;
 
-use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
-use League\Fractal\Resource\Item;
+use PHPOpenSourceSaver\Fractal\Manager;
+use PHPOpenSourceSaver\Fractal\Resource\Collection;
+use PHPOpenSourceSaver\Fractal\Resource\Item;
 use Laraplate\Api\V1\Transformers\RoleTransformer;
 use Laraplate\Entities\Permission\Models\Permission;
 use Laraplate\Entities\Role\Models\Role;
 use Laraplate\Serializers\CustomSerializer;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class RoleSyncPermissionTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_should_attach_one_permission_to_one_role_throw_sync()
     {
         //ARRANGE
-        $roleData = factory(Role::class)->create();
-        $permission = factory(Permission::class)->create();
+        $roleData = Role::factory()->create();
+        $permission = Permission::factory()->create();
 
         //ACT
         $response = $this->post(
@@ -40,12 +41,12 @@ class RoleSyncPermissionTest extends TestCase
         $this->assertEquals($permission->toArray(), $perm);
     }
 
-    /** @test */
+    #[Test]
     public function it_should_detach_one_permission_to_one_role_throw_sync()
     {
         //ARRANGE
-        $roleData = factory(Role::class)->create();
-        $permission = factory(Permission::class)->create();
+        $roleData = Role::factory()->create();
+        $permission = Permission::factory()->create();
 
         $roleData->permissions()->attach($permission);
 

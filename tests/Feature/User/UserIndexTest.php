@@ -4,20 +4,21 @@ namespace Tests\Feature\User;
 
 use Illuminate\Http\Response;
 use Laraplate\Entities\User\Models\User;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UserIndexTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_should_get_all_users()
     {
         //ARRANGE
-        factory(User::class, 2)->create();
+        User::factory()->count(2)->create();
 
         //ACT
         $response = $this->get(url('/api/users'), $this->getRequestHeaders());

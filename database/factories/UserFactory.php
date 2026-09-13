@@ -1,26 +1,36 @@
 <?php
+
 namespace Database\Factories;
 
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 use Laraplate\Entities\User\Models\User;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Laraplate\Entities\User\Models\User>
+ */
+class UserFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var class-string<\Laraplate\Entities\User\Models\User>
+     */
+    protected $model = User::class;
 
-$factory->define(User::class, function (Faker $faker) {
-    return [
-        User::FIRST_NAME     => $faker->firstName,
-        User::LAST_NAME      => $faker->lastName,
-        User::EMAIL          => $faker->unique()->safeEmail,
-        User::PASSWORD       => 'password', // password
-        User::REMEMBER_TOKEN => str_random(10),
-    ];
-});
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            User::FIRST_NAME     => fake()->firstName(),
+            User::LAST_NAME      => fake()->lastName(),
+            User::EMAIL          => fake()->unique()->safeEmail(),
+            User::PASSWORD       => 'password',
+            User::REMEMBER_TOKEN => Str::random(10),
+        ];
+    }
+}

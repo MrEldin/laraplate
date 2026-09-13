@@ -2,7 +2,7 @@
 
 namespace Laraplate\Api\V1\Transformers;
 
-use League\Fractal\TransformerAbstract;
+use PHPOpenSourceSaver\Fractal\TransformerAbstract;
 use Laraplate\Entities\Permission\Models\Permission as AppPermission;
 use Spatie\Permission\Models\Permission;
 

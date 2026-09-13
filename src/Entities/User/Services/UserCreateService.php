@@ -2,6 +2,7 @@
 
 namespace Laraplate\Entities\User\Services;
 
+use Illuminate\Support\Str;
 use Laraplate\Entities\User\Contracts\UserRepository;
 use Laraplate\Entities\User\Models\User;
 
@@ -31,7 +32,7 @@ class UserCreateService
             User::FIRST_NAME => $data[User::FIRST_NAME],
             User::LAST_NAME  => $data[User::LAST_NAME],
             User::EMAIL      => $data[User::EMAIL],
-            User::PASSWORD   => isset($data[User::PASSWORD]) ? $data[User::PASSWORD] : str_random(17),
+            User::PASSWORD   => isset($data[User::PASSWORD]) ? $data[User::PASSWORD] : Str::random(17),
         ]);
     }
 }

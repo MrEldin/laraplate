@@ -34,13 +34,17 @@ return [
         'params'     => [
             'include' => 'include'
         ],
-        'serializer' => League\Fractal\Serializer\DataArraySerializer::class
+        'serializer' => PHPOpenSourceSaver\Fractal\Serializer\DataArraySerializer::class
     ],
 
     /*
     |--------------------------------------------------------------------------
     | Cache Config
     |--------------------------------------------------------------------------
+    |
+    | Laravel 13 hardens cache deserialization. If you enable repository
+    | caching, whitelist your criterion classes (and Illuminate\Support\Collection)
+    | in `config/cache.php` under `serializable_classes`.
     |
     */
     'cache'      => [
@@ -169,7 +173,8 @@ return [
         */
         'acceptedConditions' => [
             '=',
-            'like'
+            'like',
+            'in'
         ],
         /*
         |--------------------------------------------------------------------------
@@ -216,7 +221,8 @@ return [
             'orderBy'      => 'orderBy',
             'sortedBy'     => 'sortedBy',
             'with'         => 'with',
-            'searchJoin'   => 'searchJoin'
+            'searchJoin'   => 'searchJoin',
+            'withCount'    => 'withCount'
         ]
     ],
     /*
@@ -226,9 +232,9 @@ return [
     |
     */
     'generator'  => [
-        'basePath'      => base_path('/src'),
+        'basePath'      => app()->path(),
         'rootNamespace' => 'Laraplate\\',
-        'stubsOverridePath' => base_path('/src'),
+        'stubsOverridePath' => app()->path(),
         'paths'         => [
             'models'       => 'Entities',
             'repositories' => 'Repositories',

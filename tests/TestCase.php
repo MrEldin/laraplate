@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Database\Seeders\Test\TestingDatabaseSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Laraplate\Entities\Role\Models\Role;
@@ -16,11 +17,11 @@ abstract class TestCase extends BaseTestCase
     /* @var Generator $faker */
     protected $faker;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
-        (new \TestingDatabaseSeeder())->run();
+        $this->seed(TestingDatabaseSeeder::class);
 
         $this->createAuthenticatedUser('super-admin');
 

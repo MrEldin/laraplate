@@ -2,7 +2,7 @@
 
 namespace Laraplate\Serializers;
 
-use League\Fractal\Serializer\ArraySerializer;
+use PHPOpenSourceSaver\Fractal\Serializer\ArraySerializer;
 
 /**
  * Class CustomIncludeSerializer

@@ -2,27 +2,28 @@
 
 namespace Tests\Feature\Role;
 
-use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
+use PHPOpenSourceSaver\Fractal\Manager;
+use PHPOpenSourceSaver\Fractal\Resource\Collection;
 use Laraplate\Api\V1\Transformers\RoleTransformer;
 use Laraplate\Entities\Permission\Models\Permission;
 use Laraplate\Entities\Role\Models\Role;
 use Laraplate\Serializers\CustomSerializer;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class RoleIndexTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_should_get_all_roles()
     {
         //ARRANGE
         Role::truncate();
-        $roleData = factory(Role::class, 2)->create();
+        $roleData = Role::factory()->count(2)->create();
 
         //ACT
         $response = $this->get(
@@ -38,13 +39,13 @@ class RoleIndexTest extends TestCase
         $this->assertEquals($manager->createData($resource)->toJson(), $response->getContent());
     }
 
-    /** @test */
+    #[Test]
     public function it_should_get_all_roles_with_permissions()
     {
         //ARRANGE
         Role::truncate();
-        $roleData = factory(Role::class, 2)->create();
-        $permission = factory(Permission::class)->create();
+        $roleData = Role::factory()->count(2)->create();
+        $permission = Permission::factory()->create();
         foreach ($roleData as $role) {
             $role->permissions()->attach($permission);
         }

@@ -2,26 +2,27 @@
 
 namespace Tests\Feature\User;
 
-use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
-use League\Fractal\Resource\Item;
+use PHPOpenSourceSaver\Fractal\Manager;
+use PHPOpenSourceSaver\Fractal\Resource\Collection;
+use PHPOpenSourceSaver\Fractal\Resource\Item;
 use Laraplate\Api\V1\Transformers\UserTransformer;
 use Laraplate\Entities\User\Models\User;
 use Laraplate\Serializers\CustomSerializer;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UserFindTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_should_get_one_user()
     {
         //ARRANGE
-        $userData = factory(User::class)->create();
+        $userData = User::factory()->create();
 
         //ACT
         $response = $this->get(

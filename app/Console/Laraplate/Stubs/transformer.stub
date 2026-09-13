@@ -2,7 +2,7 @@
 
 $NAMESPACE$
 
-use League\Fractal\TransformerAbstract;
+use PHPOpenSourceSaver\Fractal\TransformerAbstract;
 use $MODEL$;
 
 /**
@@ -13,7 +13,7 @@ use $MODEL$;
 class $CLASS$Transformer extends TransformerAbstract
 {
 
-    protected $availableIncludes = [];
+    protected array $availableIncludes = [];
 
     /**
      * Transform user data

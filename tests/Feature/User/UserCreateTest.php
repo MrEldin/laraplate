@@ -4,20 +4,21 @@ namespace Tests\Feature\User;
 
 use Illuminate\Http\Response;
 use Laraplate\Entities\User\Models\User;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UserCreateTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_should_create_user()
     {
         //ARRANGE
-        $userData = factory(User::class)->make()->toArray();
+        $userData = User::factory()->make()->toArray();
 
         $userData['password'] = 'secret';
 

@@ -1,23 +1,33 @@
 <?php
+
 namespace Database\Factories;
 
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Laraplate\Entities\Permission\Models\Permission;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Laraplate\Entities\Permission\Models\Permission>
+ */
+class PermissionFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var class-string<\Laraplate\Entities\Permission\Models\Permission>
+     */
+    protected $model = Permission::class;
 
-$factory->define(Permission::class, function (Faker $faker) {
-    return [
-        Permission::NAME  => $faker->name,
-        Permission::LABEL => $faker->word,
-    ];
-});
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            Permission::NAME       => fake()->unique()->name(),
+            Permission::LABEL      => fake()->word(),
+            Permission::GUARD_NAME => config('auth.defaults.guard'),
+        ];
+    }
+}

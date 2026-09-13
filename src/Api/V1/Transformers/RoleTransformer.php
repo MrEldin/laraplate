@@ -2,7 +2,7 @@
 
 namespace Laraplate\Api\V1\Transformers;
 
-use League\Fractal\TransformerAbstract;
+use PHPOpenSourceSaver\Fractal\TransformerAbstract;
 use Laraplate\Entities\Role\Models\Role;
 
 /**
@@ -17,7 +17,7 @@ class RoleTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'user',
         'permissions'
     ];

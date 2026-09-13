@@ -11,17 +11,17 @@ $api = app('Dingo\Api\Routing\Router');
 | API Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
+| Here is where you can register API routes for your application. These routes
+| are registered on Dingo's router rather than Laravel's.
 |
 | You will register you routes as $SMALL_CLASS$ routes, and prefix will be
 | /$SMALL_CLASS$s/ so you can use this routes file as you main route file for
 | your $CLASS$ feature.
 |
-| Do not forget to register this routes file in your RouteServiceProvider.
-| This route file are using Dingo API for versioning api so for more info please
-| take a look here: https://github.com/dingo/api/wiki
+| Do not forget to load this routes file from the withRouting(then: ...)
+| callback in bootstrap/app.php.
+| This route file uses Dingo API for API versioning; for more info see
+| https://github.com/api-ecosystem-for-laravel/dingo-api/wiki
 |
 */
 

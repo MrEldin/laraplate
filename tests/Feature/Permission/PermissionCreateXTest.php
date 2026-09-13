@@ -4,27 +4,29 @@ namespace Tests\Feature\Permission;
 
 use Illuminate\Http\Response;
 use Laraplate\Entities\Permission\Models\Permission;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class PermissionCreateXTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
 
     /**
-     * @test
-     * @dataProvider agencyCreateInvalidData
      * @param $data
      * @param $message
      * @param $type
      */
+    #[Test]
+    #[DataProvider('agencyCreateInvalidData')]
     public function it_should_fail_create_permission_on_invalid_request($data, $message, $type)
     {
         //ARRANGE
-        $permission = factory(Permission::class)->create();
+        $permission = Permission::factory()->create();
 
         $permissionData = $permission->toArray();
         $permissionData[$type] = $data[$type];
@@ -42,7 +44,7 @@ class PermissionCreateXTest extends TestCase
         $this->assertEquals($message, $response->getOriginalContent()['errors']->get($type)[0]);
     }
 
-    public function agencyCreateInvalidData()
+    public static function agencyCreateInvalidData()
     {
         return [
             #0 Empty permission name

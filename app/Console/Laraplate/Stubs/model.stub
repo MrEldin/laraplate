@@ -15,7 +15,7 @@ class $CLASS$ extends Model implements Transformable
 {
     use TransformableTrait;
 
-    const TABLE = $SMALL_CLASS$;
+    const TABLE = '$SMALL_CLASS$';
 
     /**
      * The attributes that are mass assignable.

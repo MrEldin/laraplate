@@ -15,7 +15,7 @@ trait AuthenticatedUser
 
     public function createAuthenticatedUser($role = 'super-admin')
     {
-        $this->authenticatedUser = factory(User::class)->create([
+        $this->authenticatedUser = User::factory()->create([
             User::EMAIL       => 'admin@Laraplate.app',
             User::PASSWORD    => 'password',
         ]);

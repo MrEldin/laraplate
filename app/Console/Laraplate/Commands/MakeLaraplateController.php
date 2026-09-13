@@ -107,7 +107,7 @@ class MakeLaraplateController extends Command
             $this->generateTests($model);
 
             $this->info("Laraplate controller successfully created.");
-            $this->info("Please register new service provider created in app.php config file.");
+            $this->info("Please register the new service provider in bootstrap/providers.php.");
 
         } catch (\Exception $e) {
             $this->error($this->type . ' already exists!');
