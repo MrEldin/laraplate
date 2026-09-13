@@ -48,13 +48,13 @@ services:
     image: postgres:18-alpine
     restart: unless-stopped
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "${DB_FORWARD_PORT:-55432}:5432"
     environment:
       POSTGRES_DB: ${DB_DATABASE:-laraplate}
       POSTGRES_USER: ${DB_USERNAME:-laraplate}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-secret}
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-laraplate} -d ${DB_DATABASE:-laraplate}"]
       interval: 5s
@@ -66,7 +66,7 @@ services:
     image: redis:8-alpine
     restart: unless-stopped
     ports:
-      - "${REDIS_PORT:-6379}:6379"
+      - "${REDIS_FORWARD_PORT:-56379}:6379"
     volumes:
       - redis-data:/data
     healthcheck:

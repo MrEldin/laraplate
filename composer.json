@@ -9,6 +9,7 @@
         "api-ecosystem-for-laravel/dingo-api": "^4.8",
         "fakerphp/faker": "^1.24",
         "guzzlehttp/guzzle": "^7.9",
+        "laravel/ai": "^0.11.2",
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
         "league/flysystem-aws-s3-v3": "^3.29",
