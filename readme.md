@@ -77,6 +77,9 @@ php artisan serve
 Everything AI lives in [`src/AI`](src/AI). It sits on top of the Laravel AI SDK
 and adds one idea: **an entity can describe itself to a model, safely.**
 
+> **Full guide: [docs/ai.md](docs/ai.md)** — entities, agents, tools, approvals,
+> memory, semantic search, cost control, observability and testing.
+
 ### Give an entity AI powers
 
 Add the trait and the contract; nothing else is required.
@@ -147,6 +150,33 @@ Intelligence::ask('Summarise our permission model.');
 Intelligence::askEach($users, 'Does this account look abandoned?');
 ```
 
+### Beyond a single question
+
+```php
+// Memory: follow-up questions keep their context
+$thread = $user->ai()->remember();
+$thread->ask('Why was their payment declined?');
+$thread->ask('And what happened before that?');
+
+// Approvals: a tool that writes waits for a human
+$response = $user->ai()->withTools(new EntityUpdateTool($user, ['first_name']))
+    ->ask('Fix the spelling of their name.');
+
+if ($response->hasPendingApprovals()) {
+    $user->ai()->resume([$response->pendingApprovals->first()->id => true]);
+}
+
+// Semantic search: add HasAiSearch to an entity
+Invoice::aiSearch('unpaid invoices from German customers');
+
+// Cost control
+$user->ai()->cheap()->classify($labels);
+$user->ai()->smart()->maxSteps(3)->summarize();
+
+// Observability: every run is logged with its token usage
+AiInvocation::forSubject($user)->latest()->get();
+```
+
 ### What the layer guarantees
 
 * **Redaction is structural.** Attributes are filtered when the context is
@@ -158,6 +188,8 @@ Intelligence::askEach($users, 'Does this account look abandoned?');
 * **Tests never call a provider.** Feature tests run under
   `Http::preventStrayRequests()`; an un-faked agent fails the test instead of
   spending money.
+* **Search never breaks a write.** If the embeddings provider is down, the save
+  still succeeds and a warning is logged.
 
 ### Writing your own agent
 

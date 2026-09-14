@@ -2,9 +2,12 @@
 
 namespace Laraplate\AI\Agents;
 
+use Laraplate\AI\AgentOptions;
 use Laraplate\AI\Context\EntityContext;
+use Laravel\Ai\Concerns\RemembersConversations as RemembersConversationsConcern;
 use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Contracts\HasTools;
+use Laravel\Ai\Contracts\RemembersConversations;
 use Laravel\Ai\Promptable;
 use Stringable;
 
@@ -13,17 +16,36 @@ use Stringable;
  *
  * Subclasses supply only a role; the entity's context and the shared guardrails
  * are assembled here, so an agent cannot accidentally be built without them.
+ *
+ * Conversation memory is available but off by default: an agent only remembers
+ * once a participant has been set, which EntityIntelligence::remember() does.
  */
-abstract class EntityAgent implements Agent, HasTools
+abstract class EntityAgent implements Agent, HasTools, RemembersConversations
 {
     use Promptable;
+    use RemembersConversationsConcern;
 
-    public function __construct(public readonly EntityContext $context) {}
+    protected AgentOptions $options;
+
+    public function __construct(public readonly EntityContext $context)
+    {
+        $this->options = new AgentOptions;
+    }
 
     /**
      * Describe what this agent is for. Subclasses implement this.
      */
     abstract protected function role(): string;
+
+    /**
+     * Apply per-run generation settings.
+     */
+    public function withOptions(AgentOptions $options): static
+    {
+        $this->options = $options;
+
+        return $this;
+    }
 
     /**
      * Get the instructions that the agent should follow.
@@ -45,6 +67,33 @@ abstract class EntityAgent implements Agent, HasTools
     public function tools(): iterable
     {
         return $this->context->tools;
+    }
+
+    /**
+     * Get the maximum number of generation steps, or null for the default.
+     *
+     * The SDK prefers this method over the #[MaxSteps] attribute, which is what
+     * lets the limit be chosen per call rather than per class.
+     */
+    public function maxSteps(): ?int
+    {
+        return $this->options->maxSteps;
+    }
+
+    /**
+     * Get the maximum number of output tokens, or null for the default.
+     */
+    public function maxTokens(): ?int
+    {
+        return $this->options->maxTokens;
+    }
+
+    /**
+     * Get the sampling temperature, or null for the default.
+     */
+    public function temperature(): ?float
+    {
+        return $this->options->temperature;
     }
 
     /**

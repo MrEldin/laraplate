@@ -6,6 +6,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Laraplate\AI\Concerns\HasAi;
+use Laraplate\AI\Concerns\HasAiSearch;
 use Laraplate\AI\Contracts\HasAiContext;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
@@ -13,7 +14,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements HasAiContext, JWTSubject
 {
-    use HasAi, HasFactory, Notifiable, HasRoles;
+    use HasAi, HasAiSearch, HasFactory, Notifiable, HasRoles;
 
     const TABLE = 'users';
 

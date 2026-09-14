@@ -5,12 +5,13 @@ namespace Laraplate\Entities\Role\Models;
 use Database\Factories\RoleFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laraplate\AI\Concerns\HasAi;
+use Laraplate\AI\Concerns\HasAiSearch;
 use Laraplate\AI\Contracts\HasAiContext;
 use Spatie\Permission\Models\Role as RoleMainModel;
 
 class Role extends RoleMainModel implements HasAiContext
 {
-    use HasAi, HasFactory;
+    use HasAi, HasAiSearch, HasFactory;
 
     const ID = 'id';
     const NAME = 'name';
