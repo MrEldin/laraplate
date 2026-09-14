@@ -612,6 +612,12 @@ Embeddings::fake(fn (EmbeddingsPrompt $prompt) => array_map(
 Automatic indexing is disabled in the test environment (`AI_AUTO_INDEX=false` in
 `phpunit.xml`); call `$entity->aiIndex()` explicitly in tests that need it.
 
+> `phpunit.xml` sets each test variable as both `<env>` and `<server>`, with
+> `force="true"`. Compose exports `DB_CONNECTION=pgsql` into the container, PHP
+> copies it into `$_SERVER`, and Laravel's `env()` reads `$_SERVER` — so without
+> the `<server>` entries the suite would run `DatabaseMigrations` against the
+> live development database. Keep both lists in step when adding a variable.
+
 The layer's own tests are in [`tests/Feature/AI`](../tests/Feature/AI).
 
 ---
