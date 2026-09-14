@@ -640,8 +640,49 @@ Provider credentials and model tiers. Defaults to Anthropic:
 ],
 ```
 
-OpenAI, Gemini, Bedrock, Ollama, Groq, Mistral, xAI and others are configured in
-the same file and work with everything above.
+### Using a different provider
+
+Everything in this guide is provider-agnostic. `->cheap()` and `->smart()`
+resolve against whichever provider is configured, so the same call picks the
+right model everywhere.
+
+**DeepSeek** ships a dedicated driver — set a key and go:
+
+```dotenv
+AI_PROVIDER=deepseek
+DEEPSEEK_API_KEY=sk-...
+```
+
+**Kimi (Moonshot AI)** has no dedicated driver, but its API is OpenAI-compatible
+and a `kimi` provider is pre-configured for it:
+
+```dotenv
+AI_PROVIDER=kimi
+KIMI_API_KEY=sk-...
+```
+
+The one thing to know about `openai-compatible`: unlike the named drivers it has
+no built-in model names, so `models.text.default` is **required** — without it
+the provider throws `InvalidArgumentException` rather than guessing. The bundled
+`kimi` entry already sets all three tiers.
+
+The same pattern reaches any OpenAI-compatible endpoint (vLLM, LM Studio,
+Together, Fireworks): copy the `kimi` block, change the URL and the models.
+
+Per call, without touching config:
+
+```php
+$user->ai()->using('deepseek')->smart()->summarize();
+$user->ai()->using('kimi')->cheap()->classify($labels);
+$user->ai()->using('anthropic', 'claude-opus-5')->ask('...');
+```
+
+You can also mix providers by purpose — a cheap local model for bulk
+classification and a frontier model for the summaries a human will read.
+
+OpenAI, Gemini, Bedrock, Azure, Ollama, Groq, Mistral, xAI, OpenRouter, Cohere,
+Jina and VoyageAI are all configured in the same file and work with everything
+above.
 
 ### `config/intelligence.php` — this layer
 

@@ -99,6 +99,29 @@ return [
         'deepseek' => [
             'driver' => 'deepseek',
             'key' => env('DEEPSEEK_API_KEY'),
+            'models' => [
+                'text' => [
+                    'default' => env('DEEPSEEK_MODEL', 'deepseek-v4-flash'),
+                    'cheapest' => env('DEEPSEEK_CHEAPEST_MODEL', 'deepseek-v4-flash'),
+                    'smartest' => env('DEEPSEEK_SMARTEST_MODEL', 'deepseek-v4-pro'),
+                ],
+            ],
+        ],
+
+        // Kimi (Moonshot AI) has no dedicated driver, but its API is
+        // OpenAI-compatible. The openai-compatible driver has no built-in model
+        // names, so the "default" below is required, not optional.
+        'kimi' => [
+            'driver' => 'openai-compatible',
+            'url' => env('KIMI_URL', 'https://api.moonshot.ai/v1'),
+            'key' => env('KIMI_API_KEY'),
+            'models' => [
+                'text' => [
+                    'default' => env('KIMI_MODEL', 'kimi-k2-0905-preview'),
+                    'cheapest' => env('KIMI_CHEAPEST_MODEL', 'kimi-k2-turbo-preview'),
+                    'smartest' => env('KIMI_SMARTEST_MODEL', 'kimi-k2-0905-preview'),
+                ],
+            ],
         ],
 
         'eleven' => [
