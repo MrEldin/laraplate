@@ -7,7 +7,42 @@ set -euo pipefail
 
 cd /var/www/html
 
-log() { printf '\033[0;34m[entrypoint]\033[0m %s\n' "$1"; }
+# The scheduler and worker containers share this image and project directory.
+# Only the "app" role prepares the application; the others wait for it to
+# finish so that three containers do not migrate the same database at once.
+ROLE="${CONTAINER_ROLE:-app}"
+
+log() { printf '\033[0;34m[entrypoint:%s]\033[0m %s\n' "$ROLE" "$1"; }
+
+wait_for_postgres() {
+    if [ "${DB_CONNECTION:-pgsql}" != "pgsql" ]; then
+        return
+    fi
+
+    log "Waiting for PostgreSQL at ${DB_HOST:-postgres}:${DB_PORT:-5432}"
+    until pg_isready \
+        --host="${DB_HOST:-postgres}" \
+        --port="${DB_PORT:-5432}" \
+        --username="${DB_USERNAME:-laraplate}" \
+        --quiet; do
+        sleep 1
+    done
+    log 'PostgreSQL is ready'
+}
+
+if [ "$ROLE" != "app" ]; then
+    # The app container installs dependencies into the shared bind mount.
+    until [ -f vendor/autoload.php ]; do
+        log 'Waiting for Composer dependencies'
+        sleep 2
+    done
+
+    wait_for_postgres
+
+    log 'Ready'
+
+    exec "$@"
+fi
 
 # --- .env --------------------------------------------------------------------
 if [ ! -f .env ]; then
@@ -40,17 +75,7 @@ chown -R www-data:www-data storage bootstrap/cache
 chmod -R ug+rw storage bootstrap/cache
 
 # --- database ----------------------------------------------------------------
-if [ "${DB_CONNECTION:-pgsql}" = "pgsql" ]; then
-    log "Waiting for PostgreSQL at ${DB_HOST:-postgres}:${DB_PORT:-5432}"
-    until pg_isready \
-        --host="${DB_HOST:-postgres}" \
-        --port="${DB_PORT:-5432}" \
-        --username="${DB_USERNAME:-laraplate}" \
-        --quiet; do
-        sleep 1
-    done
-    log 'PostgreSQL is ready'
-fi
+wait_for_postgres
 
 # Seed only when the schema is created for the first time, so restarts never
 # duplicate the baseline roles, permissions and admin user. migrate:status exits

@@ -21,6 +21,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD:-secret}
       REDIS_HOST: redis
       REDIS_PORT: 6379
+      QUEUE_CONNECTION: redis
     depends_on:
       postgres:
         condition: service_healthy
@@ -74,6 +75,63 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+
+  # Runs Laravel's scheduler, which is what makes Schedule::command(...) in
+  # routes/console.php actually fire. Without it, scheduled agents never run.
+  scheduler:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        PHP_VERSION: ${PHP_VERSION:-8.4}
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    restart: unless-stopped
+    command: php artisan schedule:work
+    volumes:
+      - .:/var/www/html
+    environment:
+      CONTAINER_ROLE: scheduler
+      DB_CONNECTION: pgsql
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: ${DB_DATABASE:-laraplate}
+      DB_USERNAME: ${DB_USERNAME:-laraplate}
+      DB_PASSWORD: ${DB_PASSWORD:-secret}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      QUEUE_CONNECTION: redis
+    depends_on:
+      app:
+        condition: service_healthy
+
+  # Processes queued work, including ->queue() agent prompts.
+  worker:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        PHP_VERSION: ${PHP_VERSION:-8.4}
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    restart: unless-stopped
+    command: php artisan queue:work --tries=3 --max-time=3600 --backoff=10
+    volumes:
+      - .:/var/www/html
+    environment:
+      CONTAINER_ROLE: worker
+      DB_CONNECTION: pgsql
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: ${DB_DATABASE:-laraplate}
+      DB_USERNAME: ${DB_USERNAME:-laraplate}
+      DB_PASSWORD: ${DB_PASSWORD:-secret}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      QUEUE_CONNECTION: redis
+    depends_on:
+      app:
+        condition: service_healthy
 
 volumes:
   postgres-data:

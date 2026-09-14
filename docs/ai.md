@@ -25,10 +25,11 @@ prompt by hand and without leaking a password hash into one.
 9. [Choosing a model, capping a run](#choosing-a-model-capping-a-run)
 10. [Observability](#observability)
 11. [Writing your own agent](#writing-your-own-agent)
-12. [Testing](#testing)
-13. [Configuration](#configuration)
-14. [How it fits together](#how-it-fits-together)
-15. [Known limits](#known-limits)
+12. [Scheduled and queued agents](#scheduled-and-queued-agents)
+13. [Testing](#testing)
+14. [Configuration](#configuration)
+15. [How it fits together](#how-it-fits-together)
+16. [Known limits](#known-limits)
 
 ---
 
@@ -743,6 +744,172 @@ Intelligence::for() ┘         │                     │
 
 Only these files know about `laravel/ai`. Your entities and services do not —
 there is no `use Laravel\Ai\...` anywhere in `src/Entities` or `app/`.
+
+---
+
+## Scheduled and queued agents
+
+Agent work is slow and costs money, which makes it a poor fit for a web request.
+The two containers that handle it are part of the stack:
+
+| Container | Command | What it is for |
+| --- | --- | --- |
+| `scheduler` | `php artisan schedule:work` | Fires `Schedule::` entries in `routes/console.php` |
+| `worker` | `php artisan queue:work` | Runs queued jobs, including `->queue()` prompts |
+
+Both are started by `docker compose up`. They share the app image and project
+directory but skip the setup step — only the `app` container migrates, and the
+others wait for it, so three containers never migrate the same database at once.
+
+The queue runs on Redis (`QUEUE_CONNECTION=redis`). Failures land in
+`failed_jobs`; inspect them with `php artisan queue:failed`.
+
+### Answering later instead of now
+
+```php
+$user->ai()->queue('Draft a summary of this account.');
+```
+
+The request returns immediately and the worker does the work. Read the result by
+listening for the SDK's `AgentPrompted` event, or by having the agent write what
+it produced somewhere you can read.
+
+### Running overnight
+
+The shape is: a scheduled command, an agent that researches, structured output,
+and a write you control.
+
+**1. An agent that can search the web.** `WebSearch` runs at the provider, so
+there is no scraper to host. Supported on Anthropic, OpenAI, Gemini, xAI and
+OpenRouter.
+
+```php
+namespace Laraplate\AI\Agents;
+
+use Illuminate\Contracts\JsonSchema\JsonSchema;
+use Laravel\Ai\Contracts\HasStructuredOutput;
+use Laravel\Ai\Providers\Tools\WebSearch;
+
+class CompetitorResearchAgent extends EntityAgent implements HasStructuredOutput
+{
+    protected function role(): string
+    {
+        return 'You research how competitors price a product and report what you find. '
+            .'Cite a source URL for every figure. Omit anything you could not verify.';
+    }
+
+    public function tools(): iterable
+    {
+        return [
+            ...parent::tools(),
+            (new WebSearch(maxSearches: 5))->allow(['example.com', 'competitor.test']),
+        ];
+    }
+
+    public function schema(JsonSchema $schema): array
+    {
+        return [
+            'findings' => $schema->array()->items($schema->object([
+                'competitor' => $schema->string()->required(),
+                'price'      => $schema->number()->required(),
+                'source_url' => $schema->string()->required(),
+            ]))->max(10)->required(),
+
+            'summary' => $schema->string()->max(500)->required(),
+        ];
+    }
+}
+```
+
+**2. A command that runs it and writes the result.** Doing the write here rather
+than through a tool keeps an unattended run predictable: the model decides what
+it found, your code decides what that means for the database.
+
+```php
+class ResearchCompetitors extends Command
+{
+    protected $signature = 'research:competitors';
+
+    public function handle(): int
+    {
+        foreach (Product::query()->where('tracked', true)->cursor() as $product) {
+            $research = $product->ai()
+                ->smart()
+                ->maxSteps(8)
+                ->agent(CompetitorResearchAgent::class)
+                ->prompt('Research current competitor pricing for this product.');
+
+            foreach ($research['findings'] as $finding) {
+                $product->competitorPrices()->create([
+                    'competitor' => $finding['competitor'],
+                    'price'      => $finding['price'],
+                    'source_url' => $finding['source_url'],
+                    'observed_at' => now(),
+                ]);
+            }
+
+            $product->update(['research_summary' => $research['summary']]);
+        }
+
+        return self::SUCCESS;
+    }
+}
+```
+
+**3. Schedule it.**
+
+```php
+// routes/console.php
+use Illuminate\Support\Facades\Schedule;
+
+Schedule::command('research:competitors')
+    ->dailyAt('03:00')
+    ->withoutOverlapping()
+    ->onOneServer()
+    ->runInBackground();
+```
+
+The findings are in the database when you arrive.
+
+### If you want the agent itself to write
+
+Give it a tool instead of writing in the command. Remember that anything
+extending `ApprovableTool` **pauses and waits for a human** — which is exactly
+wrong for an unattended 3am run. Either write a plain `Tool`, or waive the pause
+deliberately:
+
+```php
+(new EntityUpdateTool($product, ['research_summary']))->withoutApproval()
+```
+
+Prefer the command doing the write. Reserve agent-driven writes for cases where
+the model must decide *which* records to change, not just what to put in them.
+
+### Watching it
+
+Every run is in `ai_invocations`, so the morning check is a query:
+
+```php
+AiInvocation::query()
+    ->where('agent', CompetitorResearchAgent::class)
+    ->whereDate('created_at', today())
+    ->get()
+    ->sum(fn ($run) => $run->totalTokens());
+```
+
+Failed runs are recorded there too, with the error message.
+
+### Things that bite
+
+* **Cost scales with the loop.** A scheduled command over 5,000 records is 5,000
+  agent runs. Start with `->cheap()`, a `limit()`, and a look at
+  `ai_invocations` before widening it.
+* **`maxSteps` matters more here.** A research agent with web search can loop.
+  Cap it.
+* **`withoutOverlapping()` is not optional** for a job that may run longer than
+  its interval.
+* **The worker has a memory limit.** Long agent runs are fine, but keep
+  `--max-time` in place so workers recycle.
 
 ---
 
